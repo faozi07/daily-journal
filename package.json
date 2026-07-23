@@ -1,0 +1,12 @@
+{
+  "name": "daily-journal",
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "login": "node login.mjs",
+    "fill": "node fill-journal.mjs"
+  },
+  "dependencies": {
+    "playwright": "^1.44.0"
+  }
+}
