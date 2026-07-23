@@ -22,23 +22,36 @@ import { existsSync, readFileSync, writeFileSync } from "fs";
 const FORM_URL =
   "https://docs.google.com/forms/d/e/1FAIpQLSddkMKvGNQY-uPV3UTItTGkWFmfzq7RGouW8FAJFYgKYU2OTw/viewform";
 
-const PROJECT_REPO = path.resolve(
-  path.dirname(fileURLToPath(import.meta.url)),
-  "../react-native-expo-clean-architecture",
-);
-const JOURNAL_DATA_FILE = path.resolve(
-  path.dirname(fileURLToPath(import.meta.url)),
-  "journal-data.json",
-);
+const SCRIPT_DIR = path.dirname(fileURLToPath(import.meta.url));
+const PROJECT_REPO_CANDIDATES = [
+  path.resolve(SCRIPT_DIR, "../react-native-expo-clean-architecture"),
+  path.resolve(
+    SCRIPT_DIR,
+    "../../Documents/Aleph/react-native-expo-clean-architecture",
+  ),
+  "/Users/aleph/Documents/Aleph/react-native-expo-clean-architecture",
+];
+const REPO_ARG = process.argv.find((a) => a.startsWith("--repo="))?.replace("--repo=", "");
+const PROJECT_REPO =
+  (REPO_ARG && path.resolve(REPO_ARG)) ||
+  PROJECT_REPO_CANDIDATES.find((candidate) => existsSync(candidate)) ||
+  PROJECT_REPO_CANDIDATES[0];
+const PROJECT_LABEL_ARG = process.argv
+  .find((a) => a.startsWith("--project-label="))
+  ?.replace("--project-label=", "");
+const PROJECT_LABEL = PROJECT_LABEL_ARG || "SPARK";
+const JOURNAL_DATA_FILE = path.resolve(SCRIPT_DIR, "journal-data.json");
 // Bitbucket account: faozi17 — match git author name/email from that identity
 const PREFERRED_AUTHOR_PATTERNS = ["syaeful", "faozi", "faozi17"];
 
-const YOUR_NAME = "Syaeful";
+const YOUR_NAME = "Syaeful Hidayat Faozi";
 const PROJECT_NAME = "SPARK";
+const PROJECT_NAME_BRI_OTA = "Aleph ID : BRI OTA MVP";
 const ACTIVITY_1_TIME_START = { hour: "9", minute: "00", period: "AM" };
 const ACTIVITY_1_TIME_END = { hour: "12", minute: "00", period: "PM" };
 const ACTIVITY_2_TIME_START = { hour: "1", minute: "00", period: "PM" };
-const ACTIVITY_2_TIME_END = { hour: "6", minute: "00", period: "PM" };
+/** Fallback when no afternoon/evening commit timestamp is available */
+const ACTIVITY_2_TIME_END_DEFAULT = { hour: "6", minute: "00", period: "PM" };
 const FEELING = "✅ Good : Steady progress";
 
 // ─── Date helper ───────────────────────────────────────────────────────────────
@@ -93,12 +106,96 @@ function formatAuthors(entries) {
   );
 }
 
+function formTimeToMinutes({ hour, minute, period }) {
+  let h = Number(hour) % 12;
+  if (period === "PM") h += 12;
+  return h * 60 + Number(minute);
+}
+
+function dateToFormTime(date) {
+  let totalMinutes = date.getHours() * 60 + date.getMinutes();
+  if (date.getSeconds() > 0 || date.getMilliseconds() > 0) {
+    totalMinutes += 1;
+  }
+
+  // Round up to the next 15-minute mark so the journal end covers the last commit
+  let ceiled = Math.ceil(totalMinutes / 15) * 15;
+  if (ceiled >= 24 * 60) ceiled = 23 * 60 + 45;
+
+  const hours = Math.floor(ceiled / 60);
+  const minutes = ceiled % 60;
+  const period = hours >= 12 ? "PM" : "AM";
+  let hour12 = hours % 12;
+  if (hour12 === 0) hour12 = 12;
+
+  return {
+    hour: String(hour12),
+    minute: String(minutes).padStart(2, "0"),
+    period,
+  };
+}
+
+function formatFormTime({ hour, minute, period }) {
+  return `${hour}:${minute} ${period}`;
+}
+
+function resolveFormProject(journalEntry) {
+  if (journalEntry?.formProject) return journalEntry.formProject;
+  // Explicit BRI OTA form option for tagged OTA-only days
+  if (journalEntry?.project === "BRI OTA Console") return PROJECT_NAME_BRI_OTA;
+  return PROJECT_NAME;
+}
+
+/**
+ * Activity 2 end time from latest preferred-author commit.
+ * Falls back to default (6 PM) when there is no afternoon/evening commit signal,
+ * or estimates later when AI-generated activity 2 content is present without commits.
+ */
+function resolveActivity2TimeEnd({ latestCommitAt, authorCommits = [], activitySummary2 = "" }) {
+  if (latestCommitAt) {
+    const commitDate = new Date(latestCommitAt);
+    if (!Number.isNaN(commitDate.getTime())) {
+      const formTime = dateToFormTime(commitDate);
+      if (formTimeToMinutes(formTime) > formTimeToMinutes(ACTIVITY_2_TIME_START)) {
+        return {
+          ...formTime,
+          source: "latest-commit",
+          latestCommitAt,
+        };
+      }
+    }
+  }
+
+  // No usable commit time — if AI/activity content is substantial, nudge past default
+  const hasActivitySignal =
+    authorCommits.length >= 4 ||
+    (activitySummary2 &&
+      !/stability improvements, testing, and technical support/i.test(
+        activitySummary2,
+      ));
+
+  if (hasActivitySignal) {
+    return {
+      ...ACTIVITY_2_TIME_END_DEFAULT,
+      hour: "7",
+      source: "activity-estimate",
+      latestCommitAt: latestCommitAt || null,
+    };
+  }
+
+  return {
+    ...ACTIVITY_2_TIME_END_DEFAULT,
+    source: "default",
+    latestCommitAt: latestCommitAt || null,
+  };
+}
+
 function getTodayCommitContext(date) {
   const since = formatDateSince(date);
   const until = formatDateUntil(date);
   try {
     const output = execSync(
-      `git -C "${PROJECT_REPO}" log --all --no-merges --since="${since}" --until="${until}" --format="%an%x1f%ae%x1f%s"`,
+      `git -C "${PROJECT_REPO}" log --all --no-merges --since="${since}" --until="${until}" --format="%an%x1f%ae%x1f%aI%x1f%s"`,
       { encoding: "utf-8" },
     ).trim();
     if (!output) {
@@ -107,6 +204,7 @@ function getTodayCommitContext(date) {
         matchedAuthors: [],
         fallbackAuthors: [],
         usedAuthorFallback: true,
+        latestCommitAt: null,
       };
     }
 
@@ -114,10 +212,12 @@ function getTodayCommitContext(date) {
       .split("\n")
       .filter(Boolean)
       .map((line) => {
-        const [authorName = "", authorEmail = "", subject = ""] = line.split("\x1f");
+        const [authorName = "", authorEmail = "", authorDate = "", subject = ""] =
+          line.split("\x1f");
         return {
           authorName,
           authorEmail,
+          authorDate,
           subject,
         };
       });
@@ -126,12 +226,20 @@ function getTodayCommitContext(date) {
       isPreferredAuthor(entry.authorName, entry.authorEmail),
     );
 
+    const latestCommitAt =
+      authorEntries
+        .map((entry) => entry.authorDate)
+        .filter(Boolean)
+        .sort()
+        .at(-1) || null;
+
     if (authorEntries.length > 0) {
       return {
         authorCommits: authorEntries.map((entry) => entry.subject).filter(Boolean),
         matchedAuthors: formatAuthors(authorEntries),
         fallbackAuthors: [],
         usedAuthorFallback: false,
+        latestCommitAt,
       };
     }
 
@@ -140,6 +248,7 @@ function getTodayCommitContext(date) {
       matchedAuthors: [],
       fallbackAuthors: [],
       usedAuthorFallback: true,
+      latestCommitAt: null,
     };
   } catch {
     console.warn("⚠️  Could not read git log. Using fallback summary.");
@@ -148,6 +257,7 @@ function getTodayCommitContext(date) {
       matchedAuthors: [],
       fallbackAuthors: [],
       usedAuthorFallback: true,
+      latestCommitAt: null,
     };
   }
 }
@@ -192,8 +302,8 @@ function buildCommitTopicFallback(commits, type) {
 
   const scope = joinPhrases(topics);
   return type === "feature"
-    ? `Worked on ${scope} for the SPARK app.`
-    : `Supported ${scope} across the SPARK app.`;
+    ? `Worked on ${scope} for the ${PROJECT_LABEL} app.`
+    : `Supported ${scope} across the ${PROJECT_LABEL} app.`;
 }
 
 function splitCommitsByWorkstream(commits) {
@@ -232,8 +342,8 @@ function splitCommitsByWorkstream(commits) {
 function buildActivitySummary(commits, type) {
   if (commits.length === 0) {
     return type === "feature"
-      ? "Feature delivery and user experience improvements for the SPARK app."
-      : "Stability improvements, testing, and technical support work for the SPARK app.";
+      ? `Feature delivery and user experience improvements for the ${PROJECT_LABEL} app.`
+      : `Stability improvements, testing, and technical support work for the ${PROJECT_LABEL} app.`;
   }
 
   const themeMap =
@@ -243,15 +353,16 @@ function buildActivitySummary(commits, type) {
           ["shop and product journeys", /shop|product|pack|service|offer|broadband/],
           ["roaming experiences", /roaming|destination|daily roaming/],
           ["verification and account flows", /verification|identity|account|code/],
-          ["authentication and account access", /auth|token|signed-out|pin|biometric/],
-          ["navigation and journey improvements", /route|navigation|deeplink|shell/],
-          ["interface and component updates", /ui|component|profile|browser|stories|tile|screen/],
+          ["authentication and account access", /auth|token|signed-out|pin|biometric|login|sso|brilian/],
+          ["navigation and journey improvements", /route|navigation|deeplink|shell|breadcrumb/],
+          ["admin console and configuration", /admin|remote-config|environment|permission|role|user create|user update|ota/],
+          ["interface and component updates", /ui|component|profile|browser|stories|tile|screen|button|autosave/],
         ])
       : new Map([
-          ["bug fixing and reliability improvements", /fix|bug|error|response|handler|logging|boolean|guard/],
+          ["bug fixing and reliability improvements", /fix|bug|error|response|handler|logging|boolean|guard|validation/],
           ["testing and validation work", /\btest\b|mock/],
-          ["code cleanup and maintainability", /refactor|extract|normalize|revert/],
-          ["environment and release readiness", /eas|version|configuration|dev app/],
+          ["code cleanup and maintainability", /refactor|extract|normalize|revert|remove|cleanup/],
+          ["environment and release readiness", /eas|version|configuration|dev app|api/],
         ]);
 
   const themes = detectThemes(commits, themeMap);
@@ -261,20 +372,20 @@ function buildActivitySummary(commits, type) {
     if (commitFallback) return commitFallback;
 
     return type === "feature"
-      ? "Feature delivery and user experience improvements for the SPARK app."
-      : "Stability improvements, testing, and technical support work for the SPARK app.";
+      ? `Feature delivery and user experience improvements for the ${PROJECT_LABEL} app.`
+      : `Stability improvements, testing, and technical support work for the ${PROJECT_LABEL} app.`;
   }
 
   return type === "feature"
-    ? `Advanced ${joinPhrases(themes.slice(0, 3))} for the SPARK app.`
-    : `Focused on ${joinPhrases(themes.slice(0, 3))} across the SPARK app.`;
+    ? `Advanced ${joinPhrases(themes.slice(0, 3))} for the ${PROJECT_LABEL} app.`
+    : `Focused on ${joinPhrases(themes.slice(0, 3))} across the ${PROJECT_LABEL} app.`;
 }
 
 function buildDescription(commits, type) {
   if (commits.length === 0) {
     return type === "feature"
-      ? "Worked on product-facing improvements to support continued feature delivery and a smoother user experience in SPARK."
-      : "Handled stability, quality, and maintenance tasks to keep SPARK reliable and ready for ongoing delivery.";
+      ? `Worked on product-facing improvements to support continued feature delivery and a smoother user experience in ${PROJECT_LABEL}.`
+      : `Handled stability, quality, and maintenance tasks to keep ${PROJECT_LABEL} reliable and ready for ongoing delivery.`;
   }
 
   const themeMap =
@@ -284,15 +395,16 @@ function buildDescription(commits, type) {
           ["shop and product journeys", /shop|product|pack|service|offer|broadband/],
           ["roaming experiences", /roaming|destination|daily roaming/],
           ["verification and account access flows", /verification|identity|account|code/],
-          ["authentication and account access flows", /auth|token|signed-out|pin|biometric/],
-          ["navigation behavior across the app", /route|navigation|deeplink|shell/],
-          ["interface quality and reusable components", /ui|component|profile|browser|stories|tile|screen/],
+          ["authentication and account access flows", /auth|token|signed-out|pin|biometric|login|sso|brilian/],
+          ["navigation behavior across the app", /route|navigation|deeplink|shell|breadcrumb/],
+          ["admin console and configuration flows", /admin|remote-config|environment|permission|role|user create|user update|ota/],
+          ["interface quality and reusable components", /ui|component|profile|browser|stories|tile|screen|button|autosave/],
         ])
       : new Map([
-          ["application stability and issue resolution", /fix|bug|error|response|handler|logging|boolean|guard/],
+          ["application stability and issue resolution", /fix|bug|error|response|handler|logging|boolean|guard|validation/],
           ["test coverage and validation", /\btest\b|mock/],
-          ["code maintainability and structure", /refactor|extract|normalize|revert/],
-          ["release and environment readiness", /eas|version|configuration|dev app/],
+          ["code maintainability and structure", /refactor|extract|normalize|revert|remove|cleanup/],
+          ["release and environment readiness", /eas|version|configuration|dev app|api/],
         ]);
 
   const themes = detectThemes(commits, themeMap);
@@ -300,15 +412,15 @@ function buildDescription(commits, type) {
 
   if (type === "feature") {
     return scope
-      ? `Delivered product-facing progress focused on ${scope}, helping improve the overall user experience and feature completeness in SPARK.`
+      ? `Delivered product-facing progress focused on ${scope}, helping improve the overall user experience and feature completeness in ${PROJECT_LABEL}.`
       : buildCommitTopicFallback(commits, type) ||
-          "Delivered product-facing improvements that supported smoother user journeys and continued feature progress in SPARK.";
+          `Delivered product-facing improvements that supported smoother user journeys and continued feature progress in ${PROJECT_LABEL}.`;
   }
 
   return scope
-    ? `Supported product quality through ${scope}, helping improve reliability, maintainability, and delivery readiness for SPARK.`
+    ? `Supported product quality through ${scope}, helping improve reliability, maintainability, and delivery readiness for ${PROJECT_LABEL}.`
     : buildCommitTopicFallback(commits, type) ||
-        "Supported product quality through bug fixing, validation, and cleanup work to keep SPARK reliable and ready for continued delivery.";
+        `Supported product quality through bug fixing, validation, and cleanup work to keep ${PROJECT_LABEL} reliable and ready for continued delivery.`;
 }
 
 function buildTomorrowPlan(commits) {
@@ -316,7 +428,7 @@ function buildTomorrowPlan(commits) {
   const plans = [];
 
   if (featureCommits.length > 0) {
-    plans.push("Continue feature delivery and refine key user journeys in SPARK.");
+    plans.push(`Continue feature delivery and refine key user journeys in ${PROJECT_LABEL}.`);
   }
 
   if (stabilityCommits.length > 0) {
@@ -328,7 +440,7 @@ function buildTomorrowPlan(commits) {
   }
 
   if (plans.length === 0) {
-    plans.push("Continue product delivery and day-to-day execution for SPARK.");
+    plans.push(`Continue product delivery and day-to-day execution for ${PROJECT_LABEL}.`);
     plans.push("Review quality, stability, and readiness items for the next work cycle.");
   }
 
@@ -363,6 +475,7 @@ function buildJournalEntry(date, commitContext) {
     matchedAuthors,
     fallbackAuthors = [],
     usedAuthorFallback = authorCommits.length === 0,
+    latestCommitAt = null,
   } = commitContext;
   const { featureCommits, stabilityCommits } = splitCommitsByWorkstream(authorCommits);
   const activitySummary1 = buildActivitySummary(featureCommits, "feature");
@@ -371,6 +484,11 @@ function buildJournalEntry(date, commitContext) {
   const description2 = buildDescription(stabilityCommits, "stability");
   const tomorrowPlan = buildTomorrowPlan(authorCommits);
   const gratitude = buildGratitude(date);
+  const activity2TimeEnd = resolveActivity2TimeEnd({
+    latestCommitAt,
+    authorCommits,
+    activitySummary2,
+  });
 
   return {
     date: formatLocalDate(date),
@@ -379,6 +497,13 @@ function buildJournalEntry(date, commitContext) {
     matchedAuthors,
     fallbackAuthors,
     usedAuthorFallback,
+    latestCommitAt,
+    activity2TimeEnd: {
+      hour: activity2TimeEnd.hour,
+      minute: activity2TimeEnd.minute,
+      period: activity2TimeEnd.period,
+    },
+    activity2TimeEndSource: activity2TimeEnd.source,
     activitySummary1,
     description1,
     activitySummary2,
@@ -555,6 +680,90 @@ async function selectNativeDropdown(page, optionText) {
   }
 }
 
+async function checkEmailRecordCheckbox(page) {
+  // Google Forms "Email" collect-response checkbox (role="checkbox"), near Feeling on page 1
+  const candidates = [
+    page.locator('[role="checkbox"]', {
+      hasText: /Record .+ as the email to be included with my response/i,
+    }),
+    page.locator('[role="checkbox"]', { hasText: /Record .+@.+ as the email/i }),
+    page.getByRole("checkbox", {
+      name: /Record .+ as the email to be included with my response/i,
+    }),
+    page.locator('div[role="listitem"]', { hasText: /^Email/i }).locator('[role="checkbox"]'),
+    page.locator('[role="checkbox"]').first(),
+  ];
+
+  for (const checkbox of candidates) {
+    try {
+      if ((await checkbox.count()) === 0) continue;
+      const target = checkbox.first();
+      await target.waitFor({ state: "visible", timeout: 3000 });
+      const isChecked = await target.getAttribute("aria-checked");
+      if (isChecked !== "true") {
+        await target.click();
+        console.log("  ✓ Email: record response email checked");
+      } else {
+        console.log("  ✓ Email: record response email already checked");
+      }
+      return;
+    } catch {
+      // try next candidate
+    }
+  }
+
+  console.log("  ⚠ Email checkbox: not found, skipping");
+}
+
+async function enableSendCopyToggle(page) {
+  // Last-page Google Forms toggle: "Send me a copy of my responses."
+  const label = /Send me a copy of my responses/i;
+  const candidates = [
+    page.getByRole("switch", { name: label }),
+    page.locator('[role="switch"]', { hasText: label }),
+    page.locator('[role="checkbox"]', { hasText: label }),
+    page.getByText(label).locator('xpath=ancestor::*[role="switch" or role="checkbox"][1]'),
+    page.getByText(label).locator('xpath=preceding::*[@role="switch" or @role="checkbox"][1]'),
+    page
+      .locator('div, label, span')
+      .filter({ hasText: label })
+      .locator('xpath=ancestor-or-self::*[.//*[@role="switch" or @role="checkbox"]][1]')
+      .locator('[role="switch"], [role="checkbox"]')
+      .first(),
+    page.locator('[role="switch"]').last(),
+  ];
+
+  for (const candidate of candidates) {
+    try {
+      if ((await candidate.count()) === 0) continue;
+      const target = candidate.first();
+      await target.waitFor({ state: "visible", timeout: 2500 });
+      const checked =
+        (await target.getAttribute("aria-checked")) ||
+        (await target.getAttribute("aria-pressed"));
+      if (checked !== "true") {
+        await target.click({ force: true });
+        await page.waitForTimeout(200);
+        const after =
+          (await target.getAttribute("aria-checked")) ||
+          (await target.getAttribute("aria-pressed"));
+        if (after !== "true") {
+          // Some Forms builds toggle via the surrounding label row
+          await page.getByText(label).first().click({ force: true });
+        }
+        console.log('  ✓ "Send me a copy of my responses": checked');
+      } else {
+        console.log('  ✓ "Send me a copy of my responses": already checked');
+      }
+      return;
+    } catch {
+      // try next candidate
+    }
+  }
+
+  console.log('  ⚠ "Send me a copy of my responses": not found, skipping');
+}
+
 async function clickNext(page) {
   // Try role button first, then plain button element
   let nextBtn = page.locator('div[role="button"]', { hasText: "Next" }).first();
@@ -625,6 +834,17 @@ async function main() {
       .map((l) => "  " + l)
       .join("\n"),
   );
+  const activity2End =
+    journalEntry.activity2TimeEnd || ACTIVITY_2_TIME_END_DEFAULT;
+  console.log(
+    `\n🕔 Activity 2 end: ${formatFormTime(activity2End)}` +
+      (journalEntry.activity2TimeEndSource
+        ? ` (${journalEntry.activity2TimeEndSource})`
+        : "") +
+      (journalEntry.latestCommitAt
+        ? ` · latest commit ${journalEntry.latestCommitAt}`
+        : ""),
+  );
   console.log("");
 
   if (dataOnly) {
@@ -656,21 +876,6 @@ async function main() {
     await page.goto(FORM_URL, { waitUntil: "networkidle" });
     await page.waitForTimeout(1000);
 
-    // Email checkbox — Google Forms uses role="checkbox", not input[type="checkbox"]
-    try {
-      const emailCheckbox = page.locator('[role="checkbox"]').first();
-      await emailCheckbox.waitFor({ timeout: 5000 });
-      const isChecked = await emailCheckbox.getAttribute("aria-checked");
-      if (isChecked !== "true") {
-        await emailCheckbox.click();
-        console.log("  ✓ Email checkbox: checked");
-      } else {
-        console.log("  ✓ Email checkbox: already checked");
-      }
-    } catch {
-      console.log("  ⚠ Email checkbox: not found, skipping");
-    }
-
     // Your Name — plain text input
     await fillNativeNameInput(page, YOUR_NAME);
 
@@ -680,6 +885,9 @@ async function main() {
 
     // Feeling — native <select>
     await selectNativeDropdown(page, FEELING);
+
+    // Email — auto-check "Record … as the email to be included with my response"
+    await checkEmailRecordCheckbox(page);
 
     await clickNext(page);
 
@@ -694,7 +902,8 @@ async function main() {
     await fillTimeWidget(page, "Time End", ACTIVITY_1_TIME_END);
 
     // Project dropdown
-    await selectDropdown(page, "Project", PROJECT_NAME);
+    const formProject = resolveFormProject(journalEntry);
+    await selectDropdown(page, "Project", formProject);
 
     // Activity Summary 1
     await fillTextInput(
@@ -713,8 +922,13 @@ async function main() {
         .first();
       await summary2.waitFor({ timeout: 3000 });
       await fillTimeWidget(page, "Time Start", ACTIVITY_2_TIME_START, 1);
-      await fillTimeWidget(page, "Time End", ACTIVITY_2_TIME_END, 1);
-      await selectDropdown(page, "Project", PROJECT_NAME, 1);
+      await fillTimeWidget(
+        page,
+        "Time End",
+        journalEntry.activity2TimeEnd || ACTIVITY_2_TIME_END_DEFAULT,
+        1,
+      );
+      await selectDropdown(page, "Project", formProject, 1);
       await fillTextInput(
         page,
         "Activity Summary 2",
@@ -759,20 +973,8 @@ async function main() {
     await gratitudeTextarea.fill(journalEntry.gratitude);
     console.log(`  ✓ Gratitude: ${journalEntry.gratitude}`);
 
-    // Send me a copy toggle (optional — skip if not present)
-    try {
-      const copyToggle = page.locator('div[role="switch"]').first();
-      await copyToggle.waitFor({ timeout: 3000 });
-      const isOn = await copyToggle.getAttribute("aria-checked");
-      if (isOn !== "true") {
-        await copyToggle.click();
-        console.log("  ✓ Send copy: enabled");
-      } else {
-        console.log("  ✓ Send copy: already enabled");
-      }
-    } catch {
-      console.log("  ✓ Send copy toggle: not found, skipping");
-    }
+    // "Send me a copy of my responses." — always enable on final page
+    await enableSendCopyToggle(page);
 
     await page.waitForTimeout(800);
 

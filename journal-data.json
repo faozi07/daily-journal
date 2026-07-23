@@ -1,110 +1,487 @@
 {
-  "2026-07-13": {
-    "date": "2026-07-13",
-    "generatedAt": "2026-07-17T23:52:19.597Z",
+  "2026-06-29": {
+    "date": "2026-06-29",
+    "generatedAt": "2026-07-23T04:29:18.675Z",
     "rawCommits": [
-      "feat(ProductTilePack): add product tile feature-row variants story and CTA min-width"
+      "fix: require email or personal number and omit empty personal_number on user create/update",
+      "refactor: remove dev-only OTA data-source flags and always use real API"
     ],
     "matchedAuthors": [
-      "Alfan Hibban <alfan@aleph-labs.com>"
+      "Syaeful Hidayat Faozi <syaeful@aleph-labs.com>"
     ],
     "fallbackAuthors": [],
     "usedAuthorFallback": false,
-    "activitySummary1": "Advanced shop and product journeys and interface and component updates for the SPARK app.",
-    "description1": "Delivered product-facing progress focused on shop and product journeys and interface quality and reusable components, helping improve the overall user experience and feature completeness in SPARK.",
-    "activitySummary2": "Stability improvements, testing, and technical support work for the SPARK app.",
-    "description2": "Handled stability, quality, and maintenance tasks to keep SPARK reliable and ready for ongoing delivery.",
-    "tomorrowPlan": "1. Continue feature delivery and refine key user journeys in SPARK.",
-    "gratitude": "Thankful for resilience when things got tricky and for pushing through."
+    "latestCommitAt": "2026-06-29T17:30:18+07:00",
+    "activity2TimeEnd": {
+      "hour": "5",
+      "minute": "45",
+      "period": "PM"
+    },
+    "activity2TimeEndSource": "latest-commit",
+    "activitySummary1": "Moved BRI OTA Console off dev-only data flags to always use the real API, and tightened user create/update validation.",
+    "description1": "Removed temporary OTA data-source flags so the console always hits real APIs, and required email or personal number while omitting empty personal_number on user create/update.",
+    "activitySummary2": "Validated user form edge cases and API-backed admin flows for BRI OTA Console.",
+    "description2": "Checked create/update user flows against the real API path to keep admin onboarding reliable for BRI OTA Console.",
+    "tomorrowPlan": "1. Address follow-up fixes and validation work to strengthen product stability.\n2. Support release readiness through testing, cleanup, and environment checks.",
+    "gratitude": "Grateful for a team culture that values clean code and thoughtful design.",
+    "project": "BRI OTA Console",
+    "formProject": "SPARK"
+  },
+  "2026-06-30": {
+    "date": "2026-06-30",
+    "generatedAt": "2026-07-23T04:29:18.883Z",
+    "rawCommits": [
+      "feat:remote-config update position auto save without button",
+      "feat-login: update button sign in and sign in with brilian id",
+      "fix: improve OTA console UX for users, timestamps, and environment refresh"
+    ],
+    "matchedAuthors": [
+      "Syaeful Hidayat Faozi <syaeful@aleph-labs.com>"
+    ],
+    "fallbackAuthors": [],
+    "usedAuthorFallback": false,
+    "latestCommitAt": "2026-06-30T20:06:34+07:00",
+    "activity2TimeEnd": {
+      "hour": "8",
+      "minute": "15",
+      "period": "PM"
+    },
+    "activity2TimeEndSource": "latest-commit",
+    "activitySummary1": "Advanced admin console and configuration and interface and component updates for the BRI OTA Console app.",
+    "description1": "Delivered product-facing progress focused on admin console and configuration flows and interface quality and reusable components, helping improve the overall user experience and feature completeness in BRI OTA Console.",
+    "activitySummary2": "Supported feat-login: update button sign in and sign in with brilian id and improve OTA console UX for users, timestamps, and environment refresh across the BRI OTA Console app.",
+    "description2": "Supported feat-login: update button sign in and sign in with brilian id and improve OTA console UX for users, timestamps, and environment refresh across the BRI OTA Console app.",
+    "tomorrowPlan": "1. Continue feature delivery and refine key user journeys in BRI OTA Console.\n2. Address follow-up fixes and validation work to strengthen product stability.\n3. Support release readiness through testing, cleanup, and environment checks.",
+    "gratitude": "Grateful for a focused and productive workday with clear progress.",
+    "project": "BRI OTA Console",
+    "formProject": "SPARK"
+  },
+  "2026-07-01": {
+    "date": "2026-07-01",
+    "generatedAt": "2026-07-23T04:29:19.089Z",
+    "rawCommits": [
+      "fix: environment submit errors",
+      "fix: polish login SSO, user form validation, and environment delete errors"
+    ],
+    "matchedAuthors": [
+      "Syaeful Hidayat Faozi <syaeful@aleph-labs.com>"
+    ],
+    "fallbackAuthors": [],
+    "usedAuthorFallback": false,
+    "latestCommitAt": "2026-07-01T14:43:04+07:00",
+    "activity2TimeEnd": {
+      "hour": "2",
+      "minute": "45",
+      "period": "PM"
+    },
+    "activity2TimeEndSource": "latest-commit",
+    "activitySummary1": "Polished BRI OTA Console login SSO, user form validation, and environment submit/delete error handling.",
+    "description1": "Improved SSO login polish and tightened validation/error messaging for user forms and environment submit/delete flows in BRI OTA Console.",
+    "activitySummary2": "Stabilized environment management error states across admin flows.",
+    "description2": "Fixed environment submit errors and related admin feedback so operators get clearer failure signals in BRI OTA Console.",
+    "tomorrowPlan": "1. Address follow-up fixes and validation work to strengthen product stability.",
+    "gratitude": "Thankful for the team collaboration and smooth development flow today.",
+    "project": "BRI OTA Console",
+    "formProject": "Aleph ID : BRI OTA MVP"
+  },
+  "2026-07-02": {
+    "date": "2026-07-02",
+    "generatedAt": "2026-07-23T04:29:19.291Z",
+    "rawCommits": [
+      "fix: improve admin UX with breadcrumbs, info boxes, and role permission visibility"
+    ],
+    "matchedAuthors": [
+      "Syaeful Hidayat Faozi <syaeful@aleph-labs.com>"
+    ],
+    "fallbackAuthors": [],
+    "usedAuthorFallback": false,
+    "latestCommitAt": "2026-07-02T14:55:25+07:00",
+    "activity2TimeEnd": {
+      "hour": "3",
+      "minute": "00",
+      "period": "PM"
+    },
+    "activity2TimeEndSource": "latest-commit",
+    "activitySummary1": "Improved BRI OTA Console admin UX with breadcrumbs, info boxes, and clearer role permission visibility.",
+    "description1": "Enhanced admin navigation and guidance through breadcrumbs and info boxes, and made role permission visibility clearer for operators in BRI OTA Console.",
+    "activitySummary2": "Validated permission presentation and admin navigation clarity.",
+    "description2": "Reviewed role permission visibility and breadcrumb paths to keep BRI OTA Console admin workflows understandable during finishing.",
+    "tomorrowPlan": "1. Address follow-up fixes and validation work to strengthen product stability.",
+    "gratitude": "Grateful for the energy and clarity that helped me push through challenges.",
+    "project": "BRI OTA Console",
+    "formProject": "Aleph ID : BRI OTA MVP"
+  },
+  "2026-07-09": {
+    "date": "2026-07-09",
+    "generatedAt": "2026-07-23T04:29:19.529Z",
+    "rawCommits": [
+      "Bugfix/KAN-406 | Fix navigation bar style for iOS under 26 version"
+    ],
+    "matchedAuthors": [
+      "Syaeful Hidayat Faozi <syaeful@aleph-labs.com>"
+    ],
+    "fallbackAuthors": [],
+    "usedAuthorFallback": false,
+    "latestCommitAt": "2026-07-09T11:56:25+07:00",
+    "activity2TimeEnd": {
+      "hour": "6",
+      "minute": "00",
+      "period": "PM"
+    },
+    "activity2TimeEndSource": "default",
+    "activitySummary1": "Fixed SPARK iOS navigation bar styling for versions under iOS 26 while continuing BRI OTA documentation support.",
+    "description1": "Delivered a SPARK bugfix for navigation bar styling on older iOS versions (KAN-406), and continued assisting BRI OTA Console technical documentation finishing in parallel.",
+    "activitySummary2": "Supported BRI OTA Console technical documentation finishing and cross-checked related console behavior.",
+    "description2": "Helped complete remaining BRI OTA technical documentation items so finishing notes stayed accurate with the latest console behavior.",
+    "tomorrowPlan": "1. Continue SPARK bug fixes and platform UI polish.\n2. Wrap remaining BRI OTA Console documentation finishing tasks.",
+    "gratitude": "Thankful for a great working environment and meaningful daily contribution.",
+    "project": "SPARK + BRI OTA Console",
+    "formProject": "SPARK"
+  },
+  "2026-07-13": {
+    "date": "2026-07-13",
+    "generatedAt": "2026-07-23T04:29:19.740Z",
+    "rawCommits": [
+      "[KAN-673] Fixbug cannot pull refresh in android platform",
+      "[clean-code] revert yarn lock and remove npmrc",
+      "[KAN-644, KAN-686] Fix responsive navbar and modal cropped in android"
+    ],
+    "matchedAuthors": [
+      "Syaeful Hidayat Faozi <syaeful@aleph-labs.com>"
+    ],
+    "fallbackAuthors": [],
+    "usedAuthorFallback": false,
+    "latestCommitAt": "2026-07-13T19:36:02+07:00",
+    "activity2TimeEnd": {
+      "hour": "7",
+      "minute": "45",
+      "period": "PM"
+    },
+    "activity2TimeEndSource": "latest-commit",
+    "activitySummary1": "Fixed SPARK Android responsive navbar/modal cropping and pull-to-refresh issues.",
+    "description1": "Resolved Android navbar/modal cropping (KAN-644/KAN-686) and pull-to-refresh failures (KAN-673), plus cleanup on yarn lock/npmrc.",
+    "activitySummary2": "Stabilized Android UI regressions and cleaned local package config noise.",
+    "description2": "Supported reliability by verifying refresh and cropped-modal fixes and removing unnecessary local config files.",
+    "tomorrowPlan": "1. Address follow-up fixes and validation work to strengthen product stability.",
+    "gratitude": "Thankful for resilience when things got tricky and for pushing through.",
+    "project": "SPARK",
+    "formProject": "SPARK"
   },
   "2026-07-14": {
     "date": "2026-07-14",
-    "generatedAt": "2026-07-17T23:52:23.878Z",
+    "generatedAt": "2026-07-23T04:29:19.952Z",
     "rawCommits": [
-      "feat(roaming): add $10 Daily Roaming plan detail screen"
+      "[ADO-3585107] Fix permission biometrics with PIN in android adjust in controller",
+      "[ADO-3585107] Fix permission biometrics with PIN in android",
+      "[ADO-3589573] Fix position toast when rename payment card in android",
+      "[ADO-3589573] Fix position toast when rename payment card",
+      "[ADO-3598162] Fix font weight in link transaction history",
+      "[KAN-646] Bugfix navbar on ipad (hide search icon in ipad)"
     ],
     "matchedAuthors": [
-      "Alfan Hibban <alfan@aleph-labs.com>"
+      "Syaeful Hidayat Faozi <syaeful@aleph-labs.com>"
     ],
     "fallbackAuthors": [],
     "usedAuthorFallback": false,
-    "activitySummary1": "Advanced roaming experiences and interface and component updates for the SPARK app.",
-    "description1": "Delivered product-facing progress focused on roaming experiences and interface quality and reusable components, helping improve the overall user experience and feature completeness in SPARK.",
-    "activitySummary2": "Stability improvements, testing, and technical support work for the SPARK app.",
-    "description2": "Handled stability, quality, and maintenance tasks to keep SPARK reliable and ready for ongoing delivery.",
-    "tomorrowPlan": "1. Continue feature delivery and refine key user journeys in SPARK.",
-    "gratitude": "Grateful for a team culture that values clean code and thoughtful design."
+    "latestCommitAt": "2026-07-14T22:53:21+07:00",
+    "activity2TimeEnd": {
+      "hour": "11",
+      "minute": "00",
+      "period": "PM"
+    },
+    "activity2TimeEndSource": "latest-commit",
+    "activitySummary1": "Advanced payment and billing flows, authentication and account access, and admin console and configuration for the SPARK app.",
+    "description1": "Delivered product-facing progress focused on payment and billing journeys, authentication and account access flows, and admin console and configuration flows, helping improve the overall user experience and feature completeness in SPARK.",
+    "activitySummary2": "Focused on bug fixing and reliability improvements across the SPARK app.",
+    "description2": "Supported product quality through application stability and issue resolution, helping improve reliability, maintainability, and delivery readiness for SPARK.",
+    "tomorrowPlan": "1. Continue feature delivery and refine key user journeys in SPARK.\n2. Address follow-up fixes and validation work to strengthen product stability.",
+    "gratitude": "Grateful for a team culture that values clean code and thoughtful design.",
+    "project": "SPARK",
+    "formProject": "SPARK"
   },
   "2026-07-15": {
     "date": "2026-07-15",
-    "generatedAt": "2026-07-17T23:52:28.092Z",
+    "generatedAt": "2026-07-23T04:29:20.162Z",
     "rawCommits": [
-      "fix(shop-screen): update coptywriting",
-      "refactor(MyServices): source link existing service URL from webViewConfig",
-      "feat(ShopScreen): promote broadband plans for users without broadband service",
-      "refactor(account): cache identity verification code in memory instead of persisted storage",
-      "refactor(ShopScreen): move shop category URLs to webViewConfig",
-      "fix(NewWebviewScreen): guard null document.head at iOS document-start injection",
-      "feat(MyServiceList): move add-service bottom sheet from account switcher",
-      "feat(ContentPage): add static content page screen with ContentSection component"
+      "[ADO-3585107] Bugfix permission biometrics in android",
+      "revert yarn example",
+      "[ADO-3592630] Add new web screen for TNC bank account",
+      "[ADO-3598162] Adjustment test",
+      "[ADO-3598162] Adjustment props for link variant",
+      "[ADO-3610799] Update copy tab store to shop",
+      "[ADO-3592630] Add action click TNC in add bank account"
     ],
     "matchedAuthors": [
-      "Alfan Hibban <alfan@aleph-labs.com>"
+      "Syaeful Hidayat Faozi <syaeful@aleph-labs.com>"
     ],
     "fallbackAuthors": [],
     "usedAuthorFallback": false,
-    "activitySummary1": "Advanced shop and product journeys, verification and account flows, and interface and component updates for the SPARK app.",
-    "description1": "Delivered product-facing progress focused on shop and product journeys, verification and account access flows, and interface quality and reusable components, helping improve the overall user experience and feature completeness in SPARK.",
-    "activitySummary2": "Focused on bug fixing and reliability improvements across the SPARK app.",
-    "description2": "Supported product quality through application stability and issue resolution, helping improve reliability, maintainability, and delivery readiness for SPARK.",
+    "latestCommitAt": "2026-07-15T20:59:14+07:00",
+    "activity2TimeEnd": {
+      "hour": "9",
+      "minute": "00",
+      "period": "PM"
+    },
+    "activity2TimeEndSource": "latest-commit",
+    "activitySummary1": "Advanced payment and billing flows, verification and account flows, and authentication and account access for the SPARK app.",
+    "description1": "Delivered product-facing progress focused on payment and billing journeys, verification and account access flows, and authentication and account access flows, helping improve the overall user experience and feature completeness in SPARK.",
+    "activitySummary2": "Focused on testing and validation work and code cleanup and maintainability across the SPARK app.",
+    "description2": "Supported product quality through test coverage and validation and code maintainability and structure, helping improve reliability, maintainability, and delivery readiness for SPARK.",
     "tomorrowPlan": "1. Continue feature delivery and refine key user journeys in SPARK.\n2. Address follow-up fixes and validation work to strengthen product stability.\n3. Support release readiness through testing, cleanup, and environment checks.",
-    "gratitude": "Grateful for a focused and productive workday with clear progress."
+    "gratitude": "Grateful for a focused and productive workday with clear progress.",
+    "project": "SPARK",
+    "formProject": "SPARK"
   },
   "2026-07-16": {
     "date": "2026-07-16",
-    "generatedAt": "2026-07-17T23:52:32.590Z",
+    "generatedAt": "2026-07-23T04:29:20.371Z",
     "rawCommits": [
-      "revert(storybook): restore preview.tsx to develop",
-      "feat(shop): add product category cards, assets, and shop screens",
-      "refactor(AccountVerificationScreen): use message center for copy feedback"
+      "[ADO-3604797-3589573] move createDeslMiddlewares to sourceConfig",
+      "[ADO-3604797-3589573] adjust account name in card and prefered name",
+      "[ADO-3610764] revert source config clean code",
+      "[ADO-3610764] Fixbug failed download bill",
+      "[ADO-3597692] Set max visible to 18 months in transaction",
+      "[ADO-3597692] Fix pagination in transaction history to limit 12of transactions"
     ],
     "matchedAuthors": [
-      "Alfan Hibban <alfan@aleph-labs.com>"
+      "Syaeful Hidayat Faozi <syaeful@aleph-labs.com>"
     ],
     "fallbackAuthors": [],
     "usedAuthorFallback": false,
-    "activitySummary1": "Advanced shop and product journeys and interface and component updates for the SPARK app.",
-    "description1": "Delivered product-facing progress focused on shop and product journeys and interface quality and reusable components, helping improve the overall user experience and feature completeness in SPARK.",
-    "activitySummary2": "Focused on code cleanup and maintainability across the SPARK app.",
-    "description2": "Supported product quality through code maintainability and structure, helping improve reliability, maintainability, and delivery readiness for SPARK.",
+    "latestCommitAt": "2026-07-16T19:31:23+07:00",
+    "activity2TimeEnd": {
+      "hour": "7",
+      "minute": "45",
+      "period": "PM"
+    },
+    "activity2TimeEndSource": "latest-commit",
+    "activitySummary1": "Advanced payment and billing flows for the SPARK app.",
+    "description1": "Delivered product-facing progress focused on payment and billing journeys, helping improve the overall user experience and feature completeness in SPARK.",
+    "activitySummary2": "Focused on bug fixing and reliability improvements and code cleanup and maintainability across the SPARK app.",
+    "description2": "Supported product quality through application stability and issue resolution and code maintainability and structure, helping improve reliability, maintainability, and delivery readiness for SPARK.",
     "tomorrowPlan": "1. Continue feature delivery and refine key user journeys in SPARK.\n2. Address follow-up fixes and validation work to strengthen product stability.\n3. Support release readiness through testing, cleanup, and environment checks.",
-    "gratitude": "Thankful for the team collaboration and smooth development flow today."
+    "gratitude": "Thankful for the team collaboration and smooth development flow today.",
+    "project": "SPARK",
+    "formProject": "SPARK"
   },
-  "2026-07-17": {
-    "date": "2026-07-17",
-    "generatedAt": "2026-07-17T23:56:29.343Z",
+  "2026-07-20": {
+    "date": "2026-07-20",
+    "generatedAt": "2026-07-23T04:29:20.577Z",
     "rawCommits": [
-      "fix(shop-screen): update coptywriting",
-      "refactor(MyServices): source link existing service URL from webViewConfig",
-      "feat(ShopScreen): promote broadband plans for users without broadband service",
-      "refactor(account): cache identity verification code in memory instead of persisted storage",
-      "refactor(ShopScreen): move shop category URLs to webViewConfig",
-      "fix(NewWebviewScreen): guard null document.head at iOS document-start injection",
-      "feat(MyServiceList): move add-service bottom sheet from account switcher",
-      "feat(ContentPage): add static content page screen with ContentSection component"
+      "[KAN-686] Fix padding bottom bottomsheet",
+      "[KAN-644] fix(NewScreen): reserve bottom inset so Android nav bar does not clip content",
+      "index on develop: 69555c0e Merge branch 'develop' of bitbucket.org:xituz/react-native-expo-clean-architecture into develop"
     ],
     "matchedAuthors": [
-      "Alfan Hibban <alfan@aleph-labs.com>"
+      "Syaeful Hidayat Faozi <syaeful@aleph-labs.com>"
+    ],
+    "fallbackAuthors": [],
+    "usedAuthorFallback": false,
+    "latestCommitAt": "2026-07-20T20:01:05+07:00",
+    "activity2TimeEnd": {
+      "hour": "8",
+      "minute": "15",
+      "period": "PM"
+    },
+    "activity2TimeEndSource": "latest-commit",
+    "activitySummary1": "Fixed SPARK Android bottom inset clipping and bottomsheet bottom padding.",
+    "description1": "Reserved bottom inset on NewScreen so the Android nav bar does not clip content (KAN-644) and fixed bottomsheet bottom padding (KAN-686).",
+    "activitySummary2": "Validated Android safe-area and bottomsheet padding behavior after the fixes.",
+    "description2": "Checked inset and padding adjustments against the cropped/layout issues researched earlier in the week.",
+    "tomorrowPlan": "1. Address follow-up fixes and validation work to strengthen product stability.",
+    "gratitude": "Thankful for consistent progress and a codebase that keeps getting better.",
+    "project": "SPARK",
+    "formProject": "SPARK"
+  },
+  "2026-07-21": {
+    "date": "2026-07-21",
+    "generatedAt": "2026-07-23T04:29:20.783Z",
+    "rawCommits": [
+      "[KAN-673] Fix android pull-to-refresh indicator colors per theme"
+    ],
+    "matchedAuthors": [
+      "Syaeful Hidayat Faozi <syaeful@aleph-labs.com>"
+    ],
+    "fallbackAuthors": [],
+    "usedAuthorFallback": false,
+    "latestCommitAt": "2026-07-21T13:00:31+07:00",
+    "activity2TimeEnd": {
+      "hour": "1",
+      "minute": "15",
+      "period": "PM"
+    },
+    "activity2TimeEndSource": "latest-commit",
+    "activitySummary1": "Fixed SPARK Android pull-to-refresh indicator colors to follow the active theme.",
+    "description1": "Updated Android pull-to-refresh indicator colors per theme (KAN-673) for correct light/dark appearance.",
+    "activitySummary2": "Verified theme-aware refresh indicator rendering on Android.",
+    "description2": "Confirmed pull-to-refresh visual behavior aligns with theme tokens after the color fix.",
+    "tomorrowPlan": "1. Address follow-up fixes and validation work to strengthen product stability.",
+    "gratitude": "Grateful for problem-solving moments that led to clean solutions today.",
+    "project": "SPARK",
+    "formProject": "SPARK"
+  },
+  "2026-07-22": {
+    "date": "2026-07-22",
+    "generatedAt": "2026-07-23T04:29:20.992Z",
+    "rawCommits": [
+      "adjustment notes in resolveBottomSpacerSize function",
+      "[ADO-3585107] Fix face id access declined in ios and fix dismiss bottomsheet confirmation disable face id or biometric"
+    ],
+    "matchedAuthors": [
+      "Syaeful Hidayat Faozi <syaeful@aleph-labs.com>"
+    ],
+    "fallbackAuthors": [],
+    "usedAuthorFallback": false,
+    "latestCommitAt": "2026-07-22T22:19:13+07:00",
+    "activity2TimeEnd": {
+      "hour": "10",
+      "minute": "30",
+      "period": "PM"
+    },
+    "activity2TimeEndSource": "latest-commit",
+    "activitySummary1": "Advanced authentication and account access for the SPARK app.",
+    "description1": "Delivered product-facing progress focused on authentication and account access flows, helping improve the overall user experience and feature completeness in SPARK.",
+    "activitySummary2": "Supported adjustment notes in resolveBottomSpacerSize function across the SPARK app.",
+    "description2": "Supported adjustment notes in resolveBottomSpacerSize function across the SPARK app.",
+    "tomorrowPlan": "1. Continue feature delivery and refine key user journeys in SPARK.\n2. Address follow-up fixes and validation work to strengthen product stability.",
+    "gratitude": "Thankful for a productive session and the ability to iterate quickly.",
+    "project": "SPARK",
+    "formProject": "SPARK"
+  },
+  "2026-07-08": {
+    "date": "2026-07-08",
+    "generatedAt": "2026-07-23T04:29:21.194Z",
+    "rawCommits": [
+      "fix: audit trail breadcrumb",
+      "index on feature/ota-ldap-ns: 886cff0 refactor(audit): remove LOGIN and AUTH_FAILED audit actions"
+    ],
+    "matchedAuthors": [
+      "Syaeful Hidayat Faozi <syaeful@aleph-labs.com>"
+    ],
+    "fallbackAuthors": [],
+    "usedAuthorFallback": false,
+    "latestCommitAt": "2026-07-08T21:27:10+07:00",
+    "activity2TimeEnd": {
+      "hour": "9",
+      "minute": "30",
+      "period": "PM"
+    },
+    "activity2TimeEndSource": "latest-commit",
+    "activitySummary1": "Continued SPARK codebase research and setup while advancing BRI OTA Console audit-trail finishing.",
+    "description1": "Split the day between SPARK onboarding (code exploration, install/run readiness) and BRI OTA Console work on audit trail breadcrumb fixes and related console finishing items.",
+    "activitySummary2": "Supported BRI OTA Console technical documentation finishing alongside console polish.",
+    "description2": "Helped complete technical documentation for BRI OTA Console while closing small audit-trail UX fixes to keep docs and product behavior aligned.",
+    "tomorrowPlan": "1. Continue SPARK setup and early contribution readiness.\n2. Keep supporting BRI OTA Console technical documentation finishing.",
+    "gratitude": "Grateful for the discipline to stay focused and deliver quality work.",
+    "project": "SPARK + BRI OTA Console",
+    "formProject": "SPARK"
+  },
+  "2026-07-03": {
+    "date": "2026-07-03",
+    "generatedAt": "2026-07-23T04:29:21.205Z",
+    "rawCommits": [
+      "fix: improve admin UX with breadcrumbs, info boxes, and role permission visibility"
+    ],
+    "matchedAuthors": [
+      "Syaeful Hidayat Faozi <syaeful@aleph-labs.com>"
     ],
     "fallbackAuthors": [],
     "usedAuthorFallback": true,
-    "activitySummary1": "Advanced shop and product journeys, verification and account flows, and interface and component updates for the SPARK app.",
-    "description1": "Delivered product-facing progress focused on shop and product journeys, verification and account access flows, and interface quality and reusable components, helping improve the overall user experience and feature completeness in SPARK.",
-    "activitySummary2": "Focused on bug fixing and reliability improvements across the SPARK app.",
-    "description2": "Supported product quality through application stability and issue resolution, helping improve reliability, maintainability, and delivery readiness for SPARK.",
-    "tomorrowPlan": "1. Continue feature delivery and refine key user journeys in SPARK.\n2. Address follow-up fixes and validation work to strengthen product stability.\n3. Support release readiness through testing, cleanup, and environment checks.",
-    "gratitude": "Grateful for the energy and clarity that helped me push through challenges.",
+    "latestCommitAt": "2026-07-02T14:55:25+07:00",
+    "activity2TimeEnd": {
+      "hour": "3",
+      "minute": "00",
+      "period": "PM"
+    },
+    "activity2TimeEndSource": "latest-commit",
+    "activitySummary1": "Continued BRI OTA Console admin UX polish, focusing on breadcrumbs, info boxes, and role permission visibility follow-up.",
+    "description1": "Built on the previous day's admin console improvements to refine navigation clarity and permission visibility across BRI OTA Console finishing work.",
+    "activitySummary2": "Stabilized admin workflows and validated remaining UX edge cases for BRI OTA Console.",
+    "description2": "Supported delivery readiness by checking admin flows, permission presentation, and finishing items ahead of documentation wrap-up.",
+    "tomorrowPlan": "1. Wrap remaining BRI OTA Console finishing items.\n2. Prepare technical documentation updates for handoff.",
+    "gratitude": "Grateful for steady momentum closing out BRI OTA Console delivery work.",
+    "fallbackSourceDate": "2026-07-02",
+    "fallbackReason": "No preferred-author commits were found for this date, so weekly generation reused the strongest preferred-author commit context from the same workweek.",
+    "project": "BRI OTA Console",
+    "formProject": "Aleph ID : BRI OTA MVP"
+  },
+  "2026-07-07": {
+    "date": "2026-07-07",
+    "generatedAt": "2026-07-23T04:29:21.206Z",
+    "rawCommits": [],
+    "matchedAuthors": [],
+    "fallbackAuthors": [],
+    "usedAuthorFallback": false,
+    "latestCommitAt": null,
+    "activity2TimeEnd": {
+      "hour": "6",
+      "minute": "00",
+      "period": "PM"
+    },
+    "activity2TimeEndSource": "manual",
+    "project": "SPARK",
+    "activitySummary1": "Researched SPARK codebase structure, local installation steps, and app run setup.",
+    "description1": "Spent the day onboarding into the SPARK (react-native-expo-clean-architecture) project: reviewing repository structure, environment requirements, and installation/run documentation to get a working local development setup.",
+    "activitySummary2": "Validated local tooling and documented blockers found during SPARK setup.",
+    "description2": "Worked through dependency install and run attempts, noting configuration gaps and clarifying the path to a stable local SPARK development environment.",
+    "tomorrowPlan": "1. Continue SPARK local setup and verify the app runs end-to-end.\n2. Support BRI OTA Console technical documentation finishing in parallel.",
+    "gratitude": "Grateful for focused onboarding time to understand a new codebase properly.",
+    "formProject": "SPARK"
+  },
+  "2026-07-10": {
+    "date": "2026-07-10",
+    "generatedAt": "2026-07-23T04:29:21.206Z",
+    "rawCommits": [],
+    "matchedAuthors": [],
+    "fallbackAuthors": [],
+    "usedAuthorFallback": true,
+    "fallbackSourceDate": "2026-07-08",
+    "fallbackReason": "No preferred-author commits for this date; filled from BRI OTA documentation finishing context and related OTA work earlier in the week.",
+    "latestCommitAt": null,
+    "activity2TimeEnd": {
+      "hour": "6",
+      "minute": "00",
+      "period": "PM"
+    },
+    "activity2TimeEndSource": "manual",
+    "project": "BRI OTA Console",
+    "activitySummary1": "Completed BRI OTA Console technical documentation finishing and handoff notes.",
+    "description1": "Focused on finishing technical documentation for BRI OTA Console \u2014 aligning docs with final console behavior covering admin UX, auth/SSO-related flows, and remaining delivery notes.",
+    "activitySummary2": "Reviewed documentation completeness and clarified outstanding finishing details.",
+    "description2": "Cross-checked technical docs against recent BRI OTA Console changes to ensure the finishing package was complete and ready for handoff.",
+    "tomorrowPlan": "1. Transition fully into SPARK delivery work.\n2. Carry forward any follow-up notes from BRI OTA documentation finishing.",
+    "gratitude": "Thankful for the chance to close documentation cleanly and support a smooth handoff.",
+    "formProject": "SPARK"
+  },
+  "2026-07-17": {
+    "date": "2026-07-17",
+    "generatedAt": "2026-07-23T04:29:21.206Z",
+    "rawCommits": [
+      "[ADO-3585107] Bugfix permission biometrics in android",
+      "revert yarn example",
+      "[ADO-3592630] Add new web screen for TNC bank account"
+    ],
+    "matchedAuthors": [
+      "Syaeful Hidayat Faozi <syaeful@aleph-labs.com>"
+    ],
+    "fallbackAuthors": [],
+    "usedAuthorFallback": true,
     "fallbackSourceDate": "2026-07-15",
-    "fallbackReason": "No preferred-author commits were found for this date, so weekly generation reused the strongest preferred-author commit context from the same workweek."
+    "fallbackReason": "No preferred-author commits for this date; filled from research context plus strongest preferred-author day in the same workweek (2026-07-15).",
+    "latestCommitAt": "2026-07-15T20:59:14+07:00",
+    "activity2TimeEnd": {
+      "hour": "6",
+      "minute": "00",
+      "period": "PM"
+    },
+    "activity2TimeEndSource": "manual",
+    "project": "SPARK",
+    "activitySummary1": "Researched SPARK Android cropped layout issues and bottom sheet padding behavior.",
+    "description1": "Investigated Android UI cropping and bottom sheet padding problems in SPARK, reviewing related screens, safe-area/inset handling, and recent navbar/modal fixes to identify root causes and fix directions.",
+    "activitySummary2": "Documented findings and prepared follow-up fix plans for Android inset and bottomsheet padding.",
+    "description2": "Captured reproduction notes and likely fix areas so subsequent implementation could address Android cropped content and bottom sheet padding reliably.",
+    "tomorrowPlan": "1. Implement Android inset / bottomsheet padding fixes based on research findings.\n2. Validate pull-to-refresh and modal cropping regressions on Android.",
+    "gratitude": "Grateful for dedicated research time that clarified tricky platform UI issues.",
+    "formProject": "SPARK"
   }
 }
