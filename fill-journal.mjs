@@ -47,7 +47,10 @@ const PREFERRED_AUTHOR_PATTERNS = ["syaeful", "faozi", "faozi17"];
 const YOUR_NAME = "Syaeful Hidayat Faozi";
 const PROJECT_NAME = "SPARK";
 const PROJECT_NAME_BRI_OTA = "Aleph ID : BRI OTA MVP";
-const ACTIVITY_1_TIME_START = { hour: "9", minute: "00", period: "AM" };
+/** Default / max Activity 1 start (never later than 9:00 AM) */
+const ACTIVITY_1_TIME_START_DEFAULT = { hour: "9", minute: "00", period: "AM" };
+/** Earliest allowed Activity 1 start */
+const ACTIVITY_1_TIME_START_MIN = { hour: "7", minute: "00", period: "AM" };
 const ACTIVITY_1_TIME_END = { hour: "12", minute: "00", period: "PM" };
 const ACTIVITY_2_TIME_START = { hour: "1", minute: "00", period: "PM" };
 /** Fallback when no afternoon/evening commit timestamp is available */
@@ -147,6 +150,42 @@ function resolveFormProject(journalEntry) {
 }
 
 /**
+ * Activity 1 start time from earliest daytime preferred-author commit.
+ * Clamped to 7:00 AM – 9:00 AM. Overnight commits (before 6 AM) are ignored
+ * as work-start signals. Late first commits default to 9:00 AM max.
+ */
+function resolveActivity1TimeStart({ earliestDaytimeCommitAt = null } = {}) {
+  const minMinutes = formTimeToMinutes(ACTIVITY_1_TIME_START_MIN);
+  const maxMinutes = formTimeToMinutes(ACTIVITY_1_TIME_START_DEFAULT);
+
+  if (!earliestDaytimeCommitAt) {
+    return {
+      ...ACTIVITY_1_TIME_START_DEFAULT,
+      source: "default",
+    };
+  }
+
+  const commitDate = new Date(earliestDaytimeCommitAt);
+  if (Number.isNaN(commitDate.getTime())) {
+    return {
+      ...ACTIVITY_1_TIME_START_DEFAULT,
+      source: "default",
+    };
+  }
+
+  const formTime = dateToFormTime(commitDate);
+  const minutes = formTimeToMinutes(formTime);
+
+  if (minutes < minMinutes) {
+    return { ...ACTIVITY_1_TIME_START_MIN, source: "earliest-commit-clamped-min" };
+  }
+  if (minutes > maxMinutes) {
+    return { ...ACTIVITY_1_TIME_START_DEFAULT, source: "earliest-commit-clamped-max" };
+  }
+  return { ...formTime, source: "earliest-commit" };
+}
+
+/**
  * Activity 2 end time from latest preferred-author commit.
  * Falls back to default (6 PM) when there is no afternoon/evening commit signal,
  * or estimates later when AI-generated activity 2 content is present without commits.
@@ -204,6 +243,8 @@ function getTodayCommitContext(date) {
         matchedAuthors: [],
         fallbackAuthors: [],
         usedAuthorFallback: true,
+        earliestCommitAt: null,
+        earliestDaytimeCommitAt: null,
         latestCommitAt: null,
       };
     }
@@ -226,12 +267,20 @@ function getTodayCommitContext(date) {
       isPreferredAuthor(entry.authorName, entry.authorEmail),
     );
 
-    const latestCommitAt =
-      authorEntries
-        .map((entry) => entry.authorDate)
-        .filter(Boolean)
-        .sort()
-        .at(-1) || null;
+    const sortedCommitAts = authorEntries
+      .map((entry) => entry.authorDate)
+      .filter(Boolean)
+      .sort();
+    const earliestCommitAt = sortedCommitAts[0] || null;
+    const latestCommitAt = sortedCommitAts.at(-1) || null;
+    const earliestDaytimeCommitAt =
+      sortedCommitAts.find((iso) => {
+        const d = new Date(iso);
+        if (Number.isNaN(d.getTime())) return false;
+        const minutes = formTimeToMinutes(dateToFormTime(d));
+        // Morning work window only (6:00 AM – 12:00 PM) as start-of-day signal
+        return minutes >= 6 * 60 && minutes < 12 * 60;
+      }) || null;
 
     if (authorEntries.length > 0) {
       return {
@@ -239,6 +288,8 @@ function getTodayCommitContext(date) {
         matchedAuthors: formatAuthors(authorEntries),
         fallbackAuthors: [],
         usedAuthorFallback: false,
+        earliestCommitAt,
+        earliestDaytimeCommitAt,
         latestCommitAt,
       };
     }
@@ -248,6 +299,8 @@ function getTodayCommitContext(date) {
       matchedAuthors: [],
       fallbackAuthors: [],
       usedAuthorFallback: true,
+      earliestCommitAt: null,
+      earliestDaytimeCommitAt: null,
       latestCommitAt: null,
     };
   } catch {
@@ -257,6 +310,8 @@ function getTodayCommitContext(date) {
       matchedAuthors: [],
       fallbackAuthors: [],
       usedAuthorFallback: true,
+      earliestCommitAt: null,
+      earliestDaytimeCommitAt: null,
       latestCommitAt: null,
     };
   }
@@ -475,6 +530,7 @@ function buildJournalEntry(date, commitContext) {
     matchedAuthors,
     fallbackAuthors = [],
     usedAuthorFallback = authorCommits.length === 0,
+    earliestDaytimeCommitAt = null,
     latestCommitAt = null,
   } = commitContext;
   const { featureCommits, stabilityCommits } = splitCommitsByWorkstream(authorCommits);
@@ -484,6 +540,7 @@ function buildJournalEntry(date, commitContext) {
   const description2 = buildDescription(stabilityCommits, "stability");
   const tomorrowPlan = buildTomorrowPlan(authorCommits);
   const gratitude = buildGratitude(date);
+  const activity1TimeStart = resolveActivity1TimeStart({ earliestDaytimeCommitAt });
   const activity2TimeEnd = resolveActivity2TimeEnd({
     latestCommitAt,
     authorCommits,
@@ -497,7 +554,14 @@ function buildJournalEntry(date, commitContext) {
     matchedAuthors,
     fallbackAuthors,
     usedAuthorFallback,
+    earliestDaytimeCommitAt,
     latestCommitAt,
+    activity1TimeStart: {
+      hour: activity1TimeStart.hour,
+      minute: activity1TimeStart.minute,
+      period: activity1TimeStart.period,
+    },
+    activity1TimeStartSource: activity1TimeStart.source,
     activity2TimeEnd: {
       hour: activity2TimeEnd.hour,
       minute: activity2TimeEnd.minute,
@@ -834,10 +898,21 @@ async function main() {
       .map((l) => "  " + l)
       .join("\n"),
   );
+  const activity1Start =
+    journalEntry.activity1TimeStart || ACTIVITY_1_TIME_START_DEFAULT;
   const activity2End =
     journalEntry.activity2TimeEnd || ACTIVITY_2_TIME_END_DEFAULT;
   console.log(
-    `\n🕔 Activity 2 end: ${formatFormTime(activity2End)}` +
+    `\n🕔 Activity 1 start: ${formatFormTime(activity1Start)}` +
+      (journalEntry.activity1TimeStartSource
+        ? ` (${journalEntry.activity1TimeStartSource})`
+        : "") +
+      (journalEntry.earliestDaytimeCommitAt
+        ? ` · earliest daytime commit ${journalEntry.earliestDaytimeCommitAt}`
+        : ""),
+  );
+  console.log(
+    `🕔 Activity 2 end: ${formatFormTime(activity2End)}` +
       (journalEntry.activity2TimeEndSource
         ? ` (${journalEntry.activity2TimeEndSource})`
         : "") +
@@ -895,8 +970,12 @@ async function main() {
     console.log("\n[Page 2] Activity Details");
     await page.waitForTimeout(1000);
 
-    // Time Start
-    await fillTimeWidget(page, "Time Start", ACTIVITY_1_TIME_START);
+    // Time Start (7:00 AM – 9:00 AM, from earliest daytime commit when available)
+    await fillTimeWidget(
+      page,
+      "Time Start",
+      journalEntry.activity1TimeStart || ACTIVITY_1_TIME_START_DEFAULT,
+    );
 
     // Time End
     await fillTimeWidget(page, "Time End", ACTIVITY_1_TIME_END);
