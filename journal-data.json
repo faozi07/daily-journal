@@ -1,166 +1,214 @@
 {
-  "2026-08-18": {
-    "date": "2026-08-18",
-    "generatedAt": "2026-08-21T11:35:01.068Z",
-    "rawCommits": [
-      "fix unit test webviewscreen",
-      "adjustment search result UI understand my problem",
-      "revert changes in troubleshoot diagnostic",
-      "fix onboard connection to use line type or service list",
-      "fix isBroadbandLine to use the service list",
-      "fix broadband line detection for connection check",
-      "fix security verification flow based on unlock method",
-      "fix crash on ios when open list from popular topics in understandmyproblem"
-    ],
-    "matchedAuthors": [
-      "Syaeful Faozi <Syaeful.Faozi@spark.co.nz>"
-    ],
+  "2026-10-13": {
+    "date": "2026-10-13",
+    "generatedAt": "2026-10-21T02:37:11.564Z",
+    "rawCommits": [],
+    "matchedAuthors": [],
     "fallbackAuthors": [],
     "usedAuthorFallback": false,
-    "latestCommitAt": "2026-08-18T21:08:43+07:00",
-    "activity2TimeEnd": {
-      "hour": "9",
-      "minute": "15",
-      "period": "PM"
-    },
-    "activity2TimeEndSource": "latest-commit",
-    "project": "SPARK",
-    "formProject": "SPARK",
-    "activitySummary1": "Fixed SPARK broadband detection, verification unlock flow, and Understand My Problem iOS crash/UI issues.",
-    "description1": "Corrected broadband line detection to use the service list for connection checks, aligned security verification with the unlock method, and fixed an iOS crash when opening popular-topics lists in Understand My Problem plus search-result UI adjustments.",
-    "activitySummary2": "Stabilized WebView tests and cleaned up troubleshoot diagnostic changes.",
-    "description2": "Fixed WebViewScreen unit tests and reverted troubleshoot diagnostic changes that were not ready, keeping SPARK help and connection flows more reliable.",
-    "tomorrowPlan": "1. Continue Understand My Problem and Help hub polish in SPARK.\n2. Follow up on broadband detection and verification edge cases.\n3. Support testing and validation for recent SPARK fixes.",
-    "gratitude": "Thankful for good tooling, a stable codebase, and meaningful work.",
     "earliestDaytimeCommitAt": null,
+    "latestCommitAt": null,
     "activity1TimeStart": {
-      "hour": "9",
+      "hour": "8",
       "minute": "00",
       "period": "AM"
     },
-    "activity1TimeStartSource": "default"
-  },
-  "2026-08-19": {
-    "date": "2026-08-19",
-    "generatedAt": "2026-08-21T11:35:01.278Z",
-    "rawCommits": [
-      "feat(understand my problem) Add item legal information after learn more in understand my problem (#123)",
-      "update test category privacy",
-      "[KAN-921] Add item legal information after learn more in understand my problem",
-      "Fixbug understand my problem (force close apps in ios and detect broadband single and multi) (#95)",
-      "handle disable gesture back ios in main tabs",
-      "revert comment in Line",
-      "move broadband service-list check from Line entity to onboard resolver",
-      "remove console log in search result screen",
-      "revert changes ScreenHeader component",
-      "feat(verify-me): require app unlock (biometric or pin) before showing the verification code (#82)",
-      "remove unused import",
-      "fix help article press opening search instead of the webview"
-    ],
-    "matchedAuthors": [
-      "Syaeful Faozi <Syaeful.Faozi@spark.co.nz>"
-    ],
-    "fallbackAuthors": [],
-    "usedAuthorFallback": false,
-    "latestCommitAt": "2026-08-19T19:23:58+07:00",
+    "activity1TimeStartSource": "manual",
     "activity2TimeEnd": {
       "hour": "7",
       "minute": "30",
       "period": "PM"
     },
-    "activity2TimeEndSource": "latest-commit",
+    "activity2TimeEndSource": "manual",
+    "activitySummary1": "Stood by for SPARK bugfix support during the day.",
+    "description1": "Remained available to investigate and support SPARK bug fixes as issues came up during the workday.",
+    "activitySummary2": "Supported investigating and patching incoming SPARK issues as they came up.",
+    "description2": "Helped triage and follow up on reported SPARK defects, staying on standby to patch and verify fixes when needed.",
+    "tomorrowPlan": "1. Continue SPARK support and journal/research follow-ups.\n2. Resume iOS 27 navbar research notes as needed.",
+    "gratitude": "Thankful for a steady day supporting the team on bugfix standby.",
     "project": "SPARK",
-    "formProject": "SPARK",
-    "activitySummary1": "Shipped SPARK Verify Me unlock gate and Understand My Problem legal info plus iOS force-close/broadband fixes.",
-    "description1": "Required app unlock (biometric or PIN) before showing the verification code, added legal information after Learn more (KAN-921), and fixed Understand My Problem iOS force-close plus single/multi broadband detection.",
-    "activitySummary2": "Hardened Help navigation, iOS back gestures, and onboard broadband resolver cleanup.",
-    "description2": "Fixed help article press opening the webview instead of search, disabled iOS gesture-back on main tabs, moved broadband service-list checks into the onboard resolver, and cleaned up privacy tests and unused code.",
-    "tomorrowPlan": "1. Continue SPARK Help and Understand My Problem delivery.\n2. Address follow-up fixes from QA on verification and broadband flows.\n3. Support release readiness through testing and cleanup.",
-    "gratitude": "Grateful for the opportunity to learn something new and ship real features.",
-    "earliestDaytimeCommitAt": "2026-08-19T09:19:39+07:00",
-    "activity1TimeStart": {
-      "hour": "9",
-      "minute": "00",
-      "period": "AM"
-    },
-    "activity1TimeStartSource": "earliest-commit-clamped-max"
+    "formProject": "SPARK"
   },
-  "2026-08-20": {
-    "date": "2026-08-20",
-    "generatedAt": "2026-08-21T11:35:01.489Z",
-    "rawCommits": [
-      "[ADO-3611521, ADO-3635030] add unit test for findRelatedTests glasses",
-      "[ADO-3611521, ADO-3635030] Fix glass ui action header in ios 26+",
-      "fix env map api key in android",
-      "Handle api key map in android (#131)",
-      "handle map api key in android"
-    ],
-    "matchedAuthors": [
-      "Syaeful Faozi <Syaeful.Faozi@spark.co.nz>"
-    ],
+  "2026-10-14": {
+    "date": "2026-10-14",
+    "generatedAt": "2026-10-21T02:37:11.780Z",
+    "rawCommits": [],
+    "matchedAuthors": [],
     "fallbackAuthors": [],
     "usedAuthorFallback": false,
-    "latestCommitAt": "2026-08-20T21:54:12+07:00",
-    "activity2TimeEnd": {
-      "hour": "10",
-      "minute": "00",
-      "period": "PM"
-    },
-    "activity2TimeEndSource": "latest-commit",
-    "project": "SPARK",
-    "formProject": "SPARK",
-    "activitySummary1": "Fixed SPARK iOS 26+ glass header actions and Android map API key handling.",
-    "description1": "Resolved glass UI action header issues on iOS 26+ (ADO-3611521 / ADO-3635030) and wired Android map API key configuration so outage/map features can load correctly.",
-    "activitySummary2": "Added glass-related unit coverage and validated map key environment setup.",
-    "description2": "Added unit tests for glass findRelatedTests coverage and fixed Android map API key env handling to keep map features stable in testing builds.",
-    "tomorrowPlan": "1. Continue SPARK Help, Search, and Outage Map bug fixes.\n2. Validate glass header and map key fixes across platforms.\n3. Support release readiness through testing and cleanup.",
-    "gratitude": "Thankful for consistent progress and a codebase that keeps getting better.",
     "earliestDaytimeCommitAt": null,
+    "latestCommitAt": null,
     "activity1TimeStart": {
-      "hour": "9",
+      "hour": "8",
       "minute": "00",
       "period": "AM"
     },
-    "activity1TimeStartSource": "default"
+    "activity1TimeStartSource": "manual",
+    "activity2TimeEnd": {
+      "hour": "7",
+      "minute": "30",
+      "period": "PM"
+    },
+    "activity2TimeEndSource": "manual",
+    "activitySummary1": "Prepared and sent the daily journal recap, including the 12 Oct iOS 27 navbar research entry.",
+    "description1": "Compiled and submitted daily journal updates, including the 12 October entry covering iOS 27 navbar research split across two sessions.",
+    "activitySummary2": "Continued research on iOS 27 navbar and glass header impact for the SPARK toolbar.",
+    "description2": "Continued reviewing iOS 27 navbar and glass header behavior and how it should map into the SPARK toolbar implementation.",
+    "tomorrowPlan": "1. Continue SPARK API DTO vs swagger alignment work.\n2. Build checklist coverage for missing request/response DTOs.",
+    "gratitude": "Grateful for clearing journal updates and continuing iOS 27 navbar research.",
+    "project": "SPARK",
+    "formProject": "SPARK"
   },
-  "2026-08-21": {
-    "date": "2026-08-21",
-    "generatedAt": "2026-08-21T11:35:01.704Z",
+  "2026-10-15": {
+    "date": "2026-10-15",
+    "generatedAt": "2026-10-21T02:37:12.001Z",
     "rawCommits": [
-      "refactor(support): group help routes under /supports/*",
-      "Fixbug Search Feature: article back stack, map quick actions, chip-scoped store search",
-      "update pointing location caching",
-      "Fixbug OutageMap Feature: camera focus, pan-aware search origin, locate button insets",
-      "Fixbug UnderstandMyProblem Feature: Help hub kids restrictions, Message us actions, and topic icons (#138)",
-      "Fixbug UnderstandMyProblem Feature: Help hub kids restrictions, Message us actions, and topic icons",
-      "index on T991370/bugfix-ado-3611521_ado-3635030: 37eb9bff2 Merge branch 'dev' of github.com-spark:sparknz/spark-app-g4 into T991370/bugfix-ado-3611521_ado-3635030"
+      "index on main: 5b45c8339 Merge branch 'main' of github.com-spark:sparknz/spark-app-g4"
     ],
     "matchedAuthors": [
       "Syaeful Faozi <Syaeful.Faozi@spark.co.nz>"
     ],
     "fallbackAuthors": [],
     "usedAuthorFallback": false,
-    "latestCommitAt": "2026-08-21T17:38:41+07:00",
-    "activity2TimeEnd": {
-      "hour": "5",
-      "minute": "45",
-      "period": "PM"
-    },
-    "activity2TimeEndSource": "latest-commit",
-    "project": "SPARK",
-    "formProject": "SPARK",
-    "activitySummary1": "Fixed SPARK Help hub kids restrictions, Search back stack/store chips, and Outage Map camera/locate behavior.",
-    "description1": "Resolved Understand My Problem Help hub kids restrictions, Message us actions, and topic icons; fixed Search article back stack, map quick actions, and chip-scoped store search; and improved Outage Map camera focus, pan-aware search origin, and locate button insets.",
-    "activitySummary2": "Grouped help routes under /supports and improved location caching.",
-    "description2": "Refactored support/help navigation under /supports/* and updated pointing location caching to keep Help and Outage Map flows cleaner and more maintainable.",
-    "tomorrowPlan": "1. Continue SPARK Help, Search, and Outage Map polish.\n2. Address follow-up QA findings from this week's bug fixes.\n3. Support release readiness through testing and cleanup.",
-    "gratitude": "Grateful for problem-solving moments that led to clean solutions today.",
-    "earliestDaytimeCommitAt": "2026-08-21T09:02:34+07:00",
+    "earliestDaytimeCommitAt": "2026-10-15T09:04:07+07:00",
+    "latestCommitAt": "2026-10-15T09:04:07+07:00",
     "activity1TimeStart": {
-      "hour": "9",
+      "hour": "8",
       "minute": "00",
       "period": "AM"
     },
-    "activity1TimeStartSource": "earliest-commit-clamped-max"
+    "activity1TimeStartSource": "manual",
+    "activity2TimeEnd": {
+      "hour": "7",
+      "minute": "30",
+      "period": "PM"
+    },
+    "activity2TimeEndSource": "manual",
+    "activitySummary1": "Audited SPARK API DTOs against swagger/services and built a checklist plus XLSX coverage.",
+    "description1": "Compared app DTOs with swagger and the services folder, produced a miss/match checklist, and exported detailed request/response required-optional-nullable fields to XLSX.",
+    "activitySummary2": "Aligned DTO fields to swagger and traced payment flows including getSurcharge and PoliPay payBill.",
+    "description2": "Updated DTO optionality to match swagger, traced getSurcharge and PoliPay payBill entry points, and fixed endpoint path consistency where needed.",
+    "tomorrowPlan": "1. Continue balance/auto-pay DTO hardening from the swagger audit.\n2. Ship recently viewed search and related DTO fixes.",
+    "gratitude": "Thankful for deep DTO/swagger audit progress that clarifies API contract gaps.",
+    "project": "SPARK",
+    "formProject": "SPARK"
+  },
+  "2026-10-16": {
+    "date": "2026-10-16",
+    "generatedAt": "2026-10-21T02:37:12.221Z",
+    "rawCommits": [
+      "fix(dto): keep active direct-debit auto-pay when bank name is missing",
+      "fix(dto): accept string or number for billed amount and cycle fields",
+      "fix(dto): allow null on optional GetLineBalance response fields",
+      "fix(dto): allow null on optional GetAccountCredit response fields",
+      "T991370/fixbug ado 3709419 recent viewed search (#753)",
+      "fix(search): keep retry banner when a submitted search fails",
+      "fix(dto): fail on unknown balance and auto-pay data instead of defaulting",
+      "feat(search): save opened help links as recently viewed",
+      "fixing mapper linebalanceentity",
+      "fix(dto): fix typecheck after balance optional-field alignment",
+      "fix(dto): align balance response DTOs and add swagger checklist tooling"
+    ],
+    "matchedAuthors": [
+      "Syaeful Faozi <Syaeful.Faozi@spark.co.nz>"
+    ],
+    "fallbackAuthors": [],
+    "usedAuthorFallback": false,
+    "earliestDaytimeCommitAt": "2026-10-16T09:01:11+07:00",
+    "latestCommitAt": "2026-10-16T17:35:46+07:00",
+    "activity1TimeStart": {
+      "hour": "8",
+      "minute": "00",
+      "period": "AM"
+    },
+    "activity1TimeStartSource": "manual",
+    "activity2TimeEnd": {
+      "hour": "7",
+      "minute": "30",
+      "period": "PM"
+    },
+    "activity2TimeEndSource": "manual",
+    "activitySummary1": "Aligned balance response DTOs with swagger tooling and added recently viewed help-link search.",
+    "description1": "Aligned balance response DTOs and swagger checklist tooling, fixed related typecheck/mapper issues, and saved opened help links as recently viewed.",
+    "activitySummary2": "Hardened balance/auto-pay DTO nullability and merged recently viewed search bugfix.",
+    "description2": "Failed unknown balance/auto-pay instead of defaulting, kept search retry banner on failure, merged recent viewed search (#753), allowed null optional credit/balance fields, accepted string/number billed amounts, and kept active direct-debit auto-pay when bank name is missing.",
+    "tomorrowPlan": "1. Continue auto-pay setup DTO edge cases.\n2. Follow up remaining swagger/DTO mismatches.",
+    "gratitude": "Grateful for shipping DTO hardening and the recently viewed search fix together.",
+    "project": "SPARK",
+    "formProject": "SPARK"
+  },
+  "2026-10-19": {
+    "date": "2026-10-19",
+    "generatedAt": "2026-10-21T02:37:12.432Z",
+    "rawCommits": [
+      "fix(dto): keep incomplete auto-pay setups visible as configured",
+      "fix(dto): keep active auto-pay setups missing payment details",
+      "fix(dto): fail on active auto-pay setups missing payment details"
+    ],
+    "matchedAuthors": [
+      "Syaeful Faozi <Syaeful.Faozi@spark.co.nz>"
+    ],
+    "fallbackAuthors": [],
+    "usedAuthorFallback": false,
+    "earliestDaytimeCommitAt": "2026-10-19T07:20:13+07:00",
+    "latestCommitAt": "2026-10-19T14:25:57+07:00",
+    "activity1TimeStart": {
+      "hour": "8",
+      "minute": "00",
+      "period": "AM"
+    },
+    "activity1TimeStartSource": "manual",
+    "activity2TimeEnd": {
+      "hour": "7",
+      "minute": "30",
+      "period": "PM"
+    },
+    "activity2TimeEndSource": "manual",
+    "activitySummary1": "Failed active auto-pay setups that were missing payment details.",
+    "description1": "Updated DTO handling so active auto-pay setups missing payment details fail correctly instead of presenting incomplete data as valid.",
+    "activitySummary2": "Kept active and incomplete auto-pay setups visible as configured when payment details are incomplete.",
+    "description2": "Adjusted auto-pay DTO behavior so incomplete setups remain visible as configured while still reflecting missing payment details safely.",
+    "tomorrowPlan": "1. Continue swagger/DTO alignment for list lines and related enums.\n2. Polish LoadingRing and skeleton shimmer UI.",
+    "gratitude": "Thankful for clarifying auto-pay DTO behavior around incomplete payment details.",
+    "project": "SPARK",
+    "formProject": "SPARK"
+  },
+  "2026-10-20": {
+    "date": "2026-10-20",
+    "generatedAt": "2026-10-21T02:37:12.642Z",
+    "rawCommits": [
+      "fix(skeleton): ADO-3663735 | Match the light and purple shimmer to the Figma skeleton spec",
+      "perf(design-system): run LoadingRing animation on the UI thread",
+      "feat(design-system): use LoadingRing for busy Button state",
+      "fix(dto): make swagger-optional enum fields optional for list lines, accesses and mobile type",
+      "fix(dto): align response DTOs with swagger and keep mapper behaviour at main parity"
+    ],
+    "matchedAuthors": [
+      "Syaeful Faozi <Syaeful.Faozi@spark.co.nz>"
+    ],
+    "fallbackAuthors": [],
+    "usedAuthorFallback": false,
+    "earliestDaytimeCommitAt": "2026-10-20T07:24:14+07:00",
+    "latestCommitAt": "2026-10-20T17:50:26+07:00",
+    "activity1TimeStart": {
+      "hour": "8",
+      "minute": "00",
+      "period": "AM"
+    },
+    "activity1TimeStartSource": "manual",
+    "activity2TimeEnd": {
+      "hour": "7",
+      "minute": "30",
+      "period": "PM"
+    },
+    "activity2TimeEndSource": "manual",
+    "activitySummary1": "Aligned response DTOs with swagger and kept mapper behavior at main parity.",
+    "description1": "Aligned response DTOs with swagger contracts, preserved mapper behavior at main parity, and made swagger-optional enum fields optional for list lines, accesses, and mobile type.",
+    "activitySummary2": "Shipped LoadingRing busy Button animation and Figma-matched skeleton shimmer.",
+    "description2": "Used LoadingRing for busy Button state, ran the LoadingRing animation on the UI thread, and matched light/purple shimmer to the Figma skeleton spec (ADO-3663735).",
+    "tomorrowPlan": "1. Follow up skeleton/LoadingRing feedback.\n2. Continue SPARK DTO and UI polish.",
+    "gratitude": "Grateful for landing DTO swagger parity alongside design-system loading polish.",
+    "project": "SPARK",
+    "formProject": "SPARK"
   }
 }
