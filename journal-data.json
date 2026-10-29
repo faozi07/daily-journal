@@ -1,13 +1,95 @@
 {
-  "2026-10-13": {
-    "date": "2026-10-13",
-    "generatedAt": "2026-10-21T02:37:11.564Z",
-    "rawCommits": [],
-    "matchedAuthors": [],
+  "2026-10-21": {
+    "date": "2026-10-21",
+    "generatedAt": "2026-10-29T21:50:00.959Z",
+    "rawCommits": [
+      "fix(design-system): keep content color for pale-bordered busy Button spinners",
+      "feat(design-system): match busy Button spinner to outline and add continuous ring",
+      "fix(skeleton): ADO-3663735 | Match the shimmer animation to the skeleton guideline",
+      "fix(dto): align service usage, smart cap and POLi enum fields with swagger"
+    ],
+    "matchedAuthors": [
+      "Syaeful Faozi <Syaeful.Faozi@spark.co.nz>"
+    ],
+    "fallbackAuthors": [],
+    "usedAuthorFallback": false,
+    "earliestDaytimeCommitAt": "2026-10-21T08:12:17+07:00",
+    "latestCommitAt": "2026-10-21T18:38:07+07:00",
+    "activity1TimeStart": {
+      "hour": "8",
+      "minute": "00",
+      "period": "AM"
+    },
+    "activity1TimeStartSource": "manual",
+    "activity2TimeEnd": {
+      "hour": "7",
+      "minute": "30",
+      "period": "PM"
+    },
+    "activity2TimeEndSource": "manual",
+    "activitySummary1": "Aligned service usage, smart cap, and POLi enum DTOs with swagger.",
+    "description1": "Updated service usage, smart cap, and POLi enum fields so the response DTOs match the swagger contract.",
+    "activitySummary2": "Matched skeleton shimmer to the guideline and polished the busy Button spinner.",
+    "description2": "Matched the skeleton shimmer animation to the guideline (ADO-3663735), aligned the busy Button spinner with the outline plus a continuous ring, and kept content color for pale-bordered spinners.",
+    "tomorrowPlan": "1. Continue skeleton shimmer alignment to Figma and Android.\n2. Migrate searchSite results toward DESL V3.",
+    "gratitude": "Thankful for steady progress on DTO swagger alignment and skeleton loading polish.",
+    "project": "SPARK",
+    "formProject": "SPARK"
+  },
+  "2026-10-22": {
+    "date": "2026-10-22",
+    "generatedAt": "2026-10-29T21:50:01.172Z",
+    "rawCommits": [
+      "fix(skeleton): ADO-3663735 | Apply UsageGauge loading opacity once like ShimmerSurface",
+      "fix(skeleton): ADO-3663735 | Remove temporary forced-loading screenshot patch",
+      "fix(skeleton): ADO-3663735 | Follow the Figma purple skeleton and keep it visible on purple cards",
+      "fix(skeleton): ADO-3663735 | Match the shimmer direction on Android and sharpen it on light",
+      "fix(skeleton): ADO-3663735 | Scale the shimmer to each element and align skeleton details",
+      "T991370/adjustment loading button state (#775)",
+      "T991370/adjustment loading button state (#775)"
+    ],
+    "matchedAuthors": [
+      "Syaeful Faozi <Syaeful.Faozi@spark.co.nz>"
+    ],
+    "fallbackAuthors": [],
+    "usedAuthorFallback": false,
+    "earliestDaytimeCommitAt": "2026-10-22T05:56:29+07:00",
+    "latestCommitAt": "2026-10-22T10:59:42+07:00",
+    "activity1TimeStart": {
+      "hour": "8",
+      "minute": "00",
+      "period": "AM"
+    },
+    "activity1TimeStartSource": "manual",
+    "activity2TimeEnd": {
+      "hour": "7",
+      "minute": "30",
+      "period": "PM"
+    },
+    "activity2TimeEndSource": "manual",
+    "activitySummary1": "Scaled skeleton shimmer per element and matched Android direction plus the Figma purple skeleton.",
+    "description1": "Scaled the shimmer to each skeleton element, matched the Android shimmer direction, followed the Figma purple skeleton, and removed the temporary forced-loading screenshot patch (ADO-3663735).",
+    "activitySummary2": "Migrated searchSite to DESL V3 and cleared the topic filter when the search input is emptied.",
+    "description2": "Migrated searchSite results and suggestions to DESL V3 defaults, and cleared the popular-chip topic filter when the search input is emptied.",
+    "tomorrowPlan": "1. Continue search topic-filter cleanup after the break.\n2. Merge remaining skeleton shimmer fixes.",
+    "gratitude": "Grateful for closing skeleton visual gaps and moving search onto DESL V3.",
+    "project": "SPARK",
+    "formProject": "SPARK"
+  },
+  "2026-10-26": {
+    "date": "2026-10-26",
+    "generatedAt": "2026-10-29T21:50:01.380Z",
+    "rawCommits": [
+      "T991370/fixbug ado 3663735 skeleton (#776)",
+      "fix(skeleton): ADO-3663735 | Reuse the card shimmer for the gauge and tune purple and light skeletons"
+    ],
+    "matchedAuthors": [
+      "Syaeful Faozi <Syaeful.Faozi@spark.co.nz>"
+    ],
     "fallbackAuthors": [],
     "usedAuthorFallback": false,
     "earliestDaytimeCommitAt": null,
-    "latestCommitAt": null,
+    "latestCommitAt": "2026-10-26T13:21:58+07:00",
     "activity1TimeStart": {
       "hour": "8",
       "minute": "00",
@@ -20,24 +102,109 @@
       "period": "PM"
     },
     "activity2TimeEndSource": "manual",
-    "activitySummary1": "Stood by for SPARK bugfix support during the day.",
-    "description1": "Remained available to investigate and support SPARK bug fixes as issues came up during the workday.",
-    "activitySummary2": "Supported investigating and patching incoming SPARK issues as they came up.",
-    "description2": "Helped triage and follow up on reported SPARK defects, staying on standby to patch and verify fixes when needed.",
-    "tomorrowPlan": "1. Continue SPARK support and journal/research follow-ups.\n2. Resume iOS 27 navbar research notes as needed.",
-    "gratitude": "Thankful for a steady day supporting the team on bugfix standby.",
+    "activitySummary1": "Simplified blank topic normalization in search.",
+    "description1": "Refactored search topic handling so blank topic values normalize more simply and consistently.",
+    "activitySummary2": "Reused the card shimmer for the usage gauge and merged the skeleton fix.",
+    "description2": "Reused the card shimmer for the usage gauge, tuned purple and light skeletons, and merged ADO-3663735 (#776).",
+    "tomorrowPlan": "1. Continue elastic-search topic filter behavior.\n2. Follow up remaining skeleton feedback.",
+    "gratitude": "Thankful for landing the skeleton shimmer merge and cleaner topic normalization.",
     "project": "SPARK",
     "formProject": "SPARK"
   },
-  "2026-10-14": {
-    "date": "2026-10-14",
-    "generatedAt": "2026-10-21T02:37:11.780Z",
-    "rawCommits": [],
-    "matchedAuthors": [],
+  "2026-10-27": {
+    "date": "2026-10-27",
+    "generatedAt": "2026-10-29T21:50:01.592Z",
+    "rawCommits": [
+      "fix(search): clear topic filter when query becomes non-searchable",
+      "refactor(search): simplify blank topic normalization",
+      "fix(search): clear popular-chip topic filter when search input is emptied",
+      "feat(search): align searchSiteSuggestions with DESL V3 defaults",
+      "feat(search): migrate searchSite results to DESL V3"
+    ],
+    "matchedAuthors": [
+      "Syaeful Faozi <Syaeful.Faozi@spark.co.nz>"
+    ],
+    "fallbackAuthors": [],
+    "usedAuthorFallback": false,
+    "earliestDaytimeCommitAt": "2026-10-26T09:01:14+07:00",
+    "latestCommitAt": "2026-10-27T06:53:22+07:00",
+    "activity1TimeStart": {
+      "hour": "8",
+      "minute": "00",
+      "period": "AM"
+    },
+    "activity1TimeStartSource": "manual",
+    "activity2TimeEnd": {
+      "hour": "7",
+      "minute": "30",
+      "period": "PM"
+    },
+    "activity2TimeEndSource": "manual",
+    "activitySummary1": "Continued elastic-search work on the search branch.",
+    "description1": "Continued work on the elastic-search branch, including search behavior around topic filters.",
+    "activitySummary2": "Cleared the topic filter when the query is no longer searchable.",
+    "description2": "Updated search so the topic filter clears when the query becomes non-searchable.",
+    "tomorrowPlan": "1. Render matched search results with SearchResultItem.\n2. Continue usage and allowance DTO swagger alignment.",
+    "gratitude": "Grateful for a focused pass on search topic-filter behavior.",
+    "project": "SPARK",
+    "formProject": "SPARK"
+  },
+  "2026-10-28": {
+    "date": "2026-10-28",
+    "generatedAt": "2026-10-29T21:50:01.830Z",
+    "rawCommits": [
+      "fix(dto): require subtotal summaries, infer roaming and auto-pay type from metadata",
+      "fix(dto): keep active auto-pay setups and skip untagged previous-charges total",
+      "fix(dto): align line usage, usage history and allowance DTOs with swagger",
+      "chore(dto): keep only balance and billing DTO alignment on this branch",
+      "feat(search): render matched results with SearchResultItem"
+    ],
+    "matchedAuthors": [
+      "Syaeful Faozi <Syaeful.Faozi@spark.co.nz>"
+    ],
+    "fallbackAuthors": [],
+    "usedAuthorFallback": false,
+    "earliestDaytimeCommitAt": "2026-10-28T08:10:34+07:00",
+    "latestCommitAt": "2026-10-28T13:51:09+07:00",
+    "activity1TimeStart": {
+      "hour": "8",
+      "minute": "00",
+      "period": "AM"
+    },
+    "activity1TimeStartSource": "manual",
+    "activity2TimeEnd": {
+      "hour": "7",
+      "minute": "30",
+      "period": "PM"
+    },
+    "activity2TimeEndSource": "manual",
+    "activitySummary1": "Rendered matched search results with SearchResultItem and aligned usage DTOs with swagger.",
+    "description1": "Rendered matched search results with SearchResultItem, kept balance and billing DTO alignment scoped to the branch, and aligned line usage, usage history, and allowance DTOs with swagger.",
+    "activitySummary2": "Hardened auto-pay, previous-charges, and roaming DTO rules from metadata.",
+    "description2": "Kept active auto-pay setups, skipped untagged previous-charges totals, required subtotal summaries, and inferred roaming plus auto-pay type from metadata.",
+    "tomorrowPlan": "1. Fix content bullet overflow and overlap.\n2. Continue skeleton shimmer tuning on Android.",
+    "gratitude": "Thankful for pairing search result UI with tighter billing DTO contracts.",
+    "project": "SPARK",
+    "formProject": "SPARK"
+  },
+  "2026-10-29": {
+    "date": "2026-10-29",
+    "generatedAt": "2026-10-29T21:50:02.041Z",
+    "rawCommits": [
+      "fix(skeleton): ADO-3663735 | Slow the shimmer sweep and strengthen the light highlight on Android",
+      "T991370/fixbug ado 3722454 overlap content (#824)",
+      "T991370/fixbug ado 3722454 overlap content (#824)",
+      "fix(content): Wrap bullet text so long lines stay inside the row",
+      "fix(content): Wrap bullet text so long lines stay inside the row",
+      "index on main: 373d79e44 Merge branch 'main' of github.com-spark:sparknz/spark-app-g4"
+    ],
+    "matchedAuthors": [
+      "Syaeful Faozi <Syaeful.Faozi@spark.co.nz>"
+    ],
     "fallbackAuthors": [],
     "usedAuthorFallback": false,
     "earliestDaytimeCommitAt": null,
-    "latestCommitAt": null,
+    "latestCommitAt": "2026-10-29T16:42:12+07:00",
     "activity1TimeStart": {
       "hour": "8",
       "minute": "00",
@@ -50,164 +217,12 @@
       "period": "PM"
     },
     "activity2TimeEndSource": "manual",
-    "activitySummary1": "Prepared and sent the daily journal recap, including the 12 Oct iOS 27 navbar research entry.",
-    "description1": "Compiled and submitted daily journal updates, including the 12 October entry covering iOS 27 navbar research split across two sessions.",
-    "activitySummary2": "Continued research on iOS 27 navbar and glass header impact for the SPARK toolbar.",
-    "description2": "Continued reviewing iOS 27 navbar and glass header behavior and how it should map into the SPARK toolbar implementation.",
-    "tomorrowPlan": "1. Continue SPARK API DTO vs swagger alignment work.\n2. Build checklist coverage for missing request/response DTOs.",
-    "gratitude": "Grateful for clearing journal updates and continuing iOS 27 navbar research.",
-    "project": "SPARK",
-    "formProject": "SPARK"
-  },
-  "2026-10-15": {
-    "date": "2026-10-15",
-    "generatedAt": "2026-10-21T02:37:12.001Z",
-    "rawCommits": [
-      "index on main: 5b45c8339 Merge branch 'main' of github.com-spark:sparknz/spark-app-g4"
-    ],
-    "matchedAuthors": [
-      "Syaeful Faozi <Syaeful.Faozi@spark.co.nz>"
-    ],
-    "fallbackAuthors": [],
-    "usedAuthorFallback": false,
-    "earliestDaytimeCommitAt": "2026-10-15T09:04:07+07:00",
-    "latestCommitAt": "2026-10-15T09:04:07+07:00",
-    "activity1TimeStart": {
-      "hour": "8",
-      "minute": "00",
-      "period": "AM"
-    },
-    "activity1TimeStartSource": "manual",
-    "activity2TimeEnd": {
-      "hour": "7",
-      "minute": "30",
-      "period": "PM"
-    },
-    "activity2TimeEndSource": "manual",
-    "activitySummary1": "Audited SPARK API DTOs against swagger/services and built a checklist plus XLSX coverage.",
-    "description1": "Compared app DTOs with swagger and the services folder, produced a miss/match checklist, and exported detailed request/response required-optional-nullable fields to XLSX.",
-    "activitySummary2": "Aligned DTO fields to swagger and traced payment flows including getSurcharge and PoliPay payBill.",
-    "description2": "Updated DTO optionality to match swagger, traced getSurcharge and PoliPay payBill entry points, and fixed endpoint path consistency where needed.",
-    "tomorrowPlan": "1. Continue balance/auto-pay DTO hardening from the swagger audit.\n2. Ship recently viewed search and related DTO fixes.",
-    "gratitude": "Thankful for deep DTO/swagger audit progress that clarifies API contract gaps.",
-    "project": "SPARK",
-    "formProject": "SPARK"
-  },
-  "2026-10-16": {
-    "date": "2026-10-16",
-    "generatedAt": "2026-10-21T02:37:12.221Z",
-    "rawCommits": [
-      "fix(dto): keep active direct-debit auto-pay when bank name is missing",
-      "fix(dto): accept string or number for billed amount and cycle fields",
-      "fix(dto): allow null on optional GetLineBalance response fields",
-      "fix(dto): allow null on optional GetAccountCredit response fields",
-      "T991370/fixbug ado 3709419 recent viewed search (#753)",
-      "fix(search): keep retry banner when a submitted search fails",
-      "fix(dto): fail on unknown balance and auto-pay data instead of defaulting",
-      "feat(search): save opened help links as recently viewed",
-      "fixing mapper linebalanceentity",
-      "fix(dto): fix typecheck after balance optional-field alignment",
-      "fix(dto): align balance response DTOs and add swagger checklist tooling"
-    ],
-    "matchedAuthors": [
-      "Syaeful Faozi <Syaeful.Faozi@spark.co.nz>"
-    ],
-    "fallbackAuthors": [],
-    "usedAuthorFallback": false,
-    "earliestDaytimeCommitAt": "2026-10-16T09:01:11+07:00",
-    "latestCommitAt": "2026-10-16T17:35:46+07:00",
-    "activity1TimeStart": {
-      "hour": "8",
-      "minute": "00",
-      "period": "AM"
-    },
-    "activity1TimeStartSource": "manual",
-    "activity2TimeEnd": {
-      "hour": "7",
-      "minute": "30",
-      "period": "PM"
-    },
-    "activity2TimeEndSource": "manual",
-    "activitySummary1": "Aligned balance response DTOs with swagger tooling and added recently viewed help-link search.",
-    "description1": "Aligned balance response DTOs and swagger checklist tooling, fixed related typecheck/mapper issues, and saved opened help links as recently viewed.",
-    "activitySummary2": "Hardened balance/auto-pay DTO nullability and merged recently viewed search bugfix.",
-    "description2": "Failed unknown balance/auto-pay instead of defaulting, kept search retry banner on failure, merged recent viewed search (#753), allowed null optional credit/balance fields, accepted string/number billed amounts, and kept active direct-debit auto-pay when bank name is missing.",
-    "tomorrowPlan": "1. Continue auto-pay setup DTO edge cases.\n2. Follow up remaining swagger/DTO mismatches.",
-    "gratitude": "Grateful for shipping DTO hardening and the recently viewed search fix together.",
-    "project": "SPARK",
-    "formProject": "SPARK"
-  },
-  "2026-10-19": {
-    "date": "2026-10-19",
-    "generatedAt": "2026-10-21T02:37:12.432Z",
-    "rawCommits": [
-      "fix(dto): keep incomplete auto-pay setups visible as configured",
-      "fix(dto): keep active auto-pay setups missing payment details",
-      "fix(dto): fail on active auto-pay setups missing payment details"
-    ],
-    "matchedAuthors": [
-      "Syaeful Faozi <Syaeful.Faozi@spark.co.nz>"
-    ],
-    "fallbackAuthors": [],
-    "usedAuthorFallback": false,
-    "earliestDaytimeCommitAt": "2026-10-19T07:20:13+07:00",
-    "latestCommitAt": "2026-10-19T14:25:57+07:00",
-    "activity1TimeStart": {
-      "hour": "8",
-      "minute": "00",
-      "period": "AM"
-    },
-    "activity1TimeStartSource": "manual",
-    "activity2TimeEnd": {
-      "hour": "7",
-      "minute": "30",
-      "period": "PM"
-    },
-    "activity2TimeEndSource": "manual",
-    "activitySummary1": "Failed active auto-pay setups that were missing payment details.",
-    "description1": "Updated DTO handling so active auto-pay setups missing payment details fail correctly instead of presenting incomplete data as valid.",
-    "activitySummary2": "Kept active and incomplete auto-pay setups visible as configured when payment details are incomplete.",
-    "description2": "Adjusted auto-pay DTO behavior so incomplete setups remain visible as configured while still reflecting missing payment details safely.",
-    "tomorrowPlan": "1. Continue swagger/DTO alignment for list lines and related enums.\n2. Polish LoadingRing and skeleton shimmer UI.",
-    "gratitude": "Thankful for clarifying auto-pay DTO behavior around incomplete payment details.",
-    "project": "SPARK",
-    "formProject": "SPARK"
-  },
-  "2026-10-20": {
-    "date": "2026-10-20",
-    "generatedAt": "2026-10-21T02:37:12.642Z",
-    "rawCommits": [
-      "fix(skeleton): ADO-3663735 | Match the light and purple shimmer to the Figma skeleton spec",
-      "perf(design-system): run LoadingRing animation on the UI thread",
-      "feat(design-system): use LoadingRing for busy Button state",
-      "fix(dto): make swagger-optional enum fields optional for list lines, accesses and mobile type",
-      "fix(dto): align response DTOs with swagger and keep mapper behaviour at main parity"
-    ],
-    "matchedAuthors": [
-      "Syaeful Faozi <Syaeful.Faozi@spark.co.nz>"
-    ],
-    "fallbackAuthors": [],
-    "usedAuthorFallback": false,
-    "earliestDaytimeCommitAt": "2026-10-20T07:24:14+07:00",
-    "latestCommitAt": "2026-10-20T17:50:26+07:00",
-    "activity1TimeStart": {
-      "hour": "8",
-      "minute": "00",
-      "period": "AM"
-    },
-    "activity1TimeStartSource": "manual",
-    "activity2TimeEnd": {
-      "hour": "7",
-      "minute": "30",
-      "period": "PM"
-    },
-    "activity2TimeEndSource": "manual",
-    "activitySummary1": "Aligned response DTOs with swagger and kept mapper behavior at main parity.",
-    "description1": "Aligned response DTOs with swagger contracts, preserved mapper behavior at main parity, and made swagger-optional enum fields optional for list lines, accesses, and mobile type.",
-    "activitySummary2": "Shipped LoadingRing busy Button animation and Figma-matched skeleton shimmer.",
-    "description2": "Used LoadingRing for busy Button state, ran the LoadingRing animation on the UI thread, and matched light/purple shimmer to the Figma skeleton spec (ADO-3663735).",
-    "tomorrowPlan": "1. Follow up skeleton/LoadingRing feedback.\n2. Continue SPARK DTO and UI polish.",
-    "gratitude": "Grateful for landing DTO swagger parity alongside design-system loading polish.",
+    "activitySummary1": "Wrapped long bullet text and merged the content overlap fix.",
+    "description1": "Wrapped bullet text so long lines stay inside the row, and merged the overlap content fix (ADO-3722454, #824).",
+    "activitySummary2": "Slowed the skeleton shimmer sweep and strengthened the light highlight on Android.",
+    "description2": "Slowed the shimmer sweep and strengthened the light highlight on Android so the skeleton matches the guideline more closely (ADO-3663735).",
+    "tomorrowPlan": "1. Follow up content layout and skeleton shimmer feedback.\n2. Continue SPARK bugfix delivery.",
+    "gratitude": "Grateful for shipping the content overlap fix and another skeleton shimmer pass.",
     "project": "SPARK",
     "formProject": "SPARK"
   }
